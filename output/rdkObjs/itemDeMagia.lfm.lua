@@ -30,15 +30,55 @@ local function constructNew_frmItemDeMagia()
     obj:setHeight(30);
     obj:setMargins({top=2,bottom=2});
 
+    obj.layout1 = GUI.fromHandle(_obj_newObject("layout"));
+    obj.layout1:setParent(obj);
+    obj.layout1:setAlign("top");
+    obj.layout1:setName("layout1");
+
+    obj.label1 = GUI.fromHandle(_obj_newObject("label"));
+    obj.label1:setParent(obj.layout1);
+    obj.label1:setAlign("left");
+    obj.label1:setText("Nome");
+    obj.label1:setWidth(100);
+    obj.label1:setName("label1");
+
     obj.edit1 = GUI.fromHandle(_obj_newObject("edit"));
-    obj.edit1:setParent(obj);
-    obj.edit1:setAlign("client");
-    obj.edit1:setField("nome");
-    obj.edit1:setMargins({right=2});
+    obj.edit1:setParent(obj.layout1);
+    obj.edit1:setAlign("left");
+    obj.edit1:setText("Lobo");
+    obj.edit1:setWidth(100);
     obj.edit1:setName("edit1");
 
+    obj.label2 = GUI.fromHandle(_obj_newObject("label"));
+    obj.label2:setParent(obj.layout1);
+    obj.label2:setAlign("left");
+    obj.label2:setText("Ataque 1");
+    obj.label2:setWidth(100);
+    obj.label2:setName("label2");
+
+    obj.edit2 = GUI.fromHandle(_obj_newObject("edit"));
+    obj.edit2:setParent(obj.layout1);
+    obj.edit2:setAlign("left");
+    obj.edit2:setText("kek");
+    obj.edit2:setWidth(100);
+    obj.edit2:setName("edit2");
+
+    obj.label3 = GUI.fromHandle(_obj_newObject("label"));
+    obj.label3:setParent(obj.layout1);
+    obj.label3:setAlign("left");
+    obj.label3:setText("Ataque 2");
+    obj.label3:setWidth(100);
+    obj.label3:setName("label3");
+
+    obj.edit3 = GUI.fromHandle(_obj_newObject("edit"));
+    obj.edit3:setParent(obj.layout1);
+    obj.edit3:setAlign("left");
+    obj.edit3:setText("kek");
+    obj.edit3:setWidth(100);
+    obj.edit3:setName("edit3");
+
     obj.button1 = GUI.fromHandle(_obj_newObject("button"));
-    obj.button1:setParent(obj);
+    obj.button1:setParent(obj.layout1);
     obj.button1:setAlign("right");
     obj.button1:setText("Apagar");
     obj.button1:setWidth(80);
@@ -46,7 +86,7 @@ local function constructNew_frmItemDeMagia()
 
     obj._e_event0 = obj.button1:addEventListener("onClick",
         function (_)
-            ndb.deleteNode(sheet);
+            NDB.deleteNode(sheet);
         end, obj);
 
     function obj:_releaseEvents()
@@ -62,8 +102,14 @@ local function constructNew_frmItemDeMagia()
           self:setNodeDatabase(nil);
         end;
 
+        if self.edit3 ~= nil then self.edit3:destroy(); self.edit3 = nil; end;
+        if self.edit2 ~= nil then self.edit2:destroy(); self.edit2 = nil; end;
         if self.button1 ~= nil then self.button1:destroy(); self.button1 = nil; end;
+        if self.label1 ~= nil then self.label1:destroy(); self.label1 = nil; end;
+        if self.layout1 ~= nil then self.layout1:destroy(); self.layout1 = nil; end;
         if self.edit1 ~= nil then self.edit1:destroy(); self.edit1 = nil; end;
+        if self.label3 ~= nil then self.label3:destroy(); self.label3 = nil; end;
+        if self.label2 ~= nil then self.label2:destroy(); self.label2 = nil; end;
         self:_oldLFMDestroy();
     end;
 

@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form name="frmItemDeMagia" height="30" margins="{top=2,bottom=2}">
 
-    <edit align="client" field="nome" margins="{right=2}" />
-
-
-    <button align="right" text="Apagar" width="80"
-        onClick="ndb.deleteNode(sheet);" />
+    <layout align="top">
+        <label align="left" text="Nome" width="100" />
+        <edit align="left" text="Lobo" width="100" />
+        <label align="left" text="Ataque 1" width="100" />
+        <edit align="left" text="kek" width="100" />
+        <label align="left" text="Ataque 2" width="100" />
+        <edit align="left" text="kek" width="100" />
+        <button align="right" text="Apagar" width="80"
+            onClick="NDB.deleteNode(sheet);" />
+    </layout>
 </form>
