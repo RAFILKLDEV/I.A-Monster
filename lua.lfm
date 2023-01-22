@@ -1,5 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<form formType="sheetTemplate" dataType="DATA_TYPE_AQUI" 
-     title="I.A Monster" name="IAMONSTER">
+<form formType="sheetTemplate" dataType="DATA_TYPE_AQUI"
+     title="I.A Monster" name="IAMONSTER" width="1000" height="800">
+
+     <!-- Prmeira Barra  -->
+     <layout align="top" width="500" padding="{left=40, top=4, right=4, bottom=4}">
+          <label align="top" text="Kek" fontColor="white"
+               autoSize="true" />
+          <edit align="top" field="Destreza" />
+     </layout>
+
+     <!-- Segunda Barra  -->
+
+     <layout align="top">
+          <label align="top"
+               text="Label de cor verde com quebra de linha" fontColor="white" autoSize="true" />
+          <edit
+               align="top" field="Destreza" />
+     </layout>
+
+     <layout align="top" height="500">
+          <recordList name="rclMagias" field="magias" templateForm="frmItemDeMagia"
+               align="top" autoHeight="true" />
+          <button left="20" top="20" height="25" text="Nova Magia" width="80"
+               onClick="self.rclMagias:append();" />
+     </layout>
+
 </form>
