@@ -3,8 +3,13 @@
 <form formType="sheetTemplate" dataType="DATA_TYPE_AQUI"
      title="I.A Monster" name="IAMONSTER" width="1000" height="800">
 
-     <rectangle align="top" color="yellow" padding="{left = 5, right = 5, top = 5, bottom = 5}">
-          <button text="Nova Monstro" width="150"
+     <rectangle align="top" color="DimGray" padding="{top=30}" height="90">
+          <label align="top" text="Randomizador de Ações!" horzTextAlign="center" fontStyle="bold"
+               fontColor="black" fontSize="50" />
+     </rectangle>
+
+     <rectangle align="top" color="DimGray" height="70" padding="{bottom=20}">
+          <button text="Nova Ação" align="left" width="100" margins="{left=50}"
                onClick="self.rclMagias:append();" />
      </rectangle>
 

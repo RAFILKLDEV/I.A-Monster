@@ -4,40 +4,40 @@
 
     <scrollBox align="top" height="50">
 
-        <rectangle align="top" color="blue" height="50">
+        <rectangle align="top" color="DimGray" height="50">
             <button align="left" text="Rolar I.A" onClick="rolarIA()" />
 
-            <label align="left" text="Nome" width="100" horzTextAlign="center" />
+            <label align="left" text="Nome" width="100" horzTextAlign="center" fontStyle="bold" fontColor="black" />
             <edit align="left" width="100" horzTextAlign="center" field="nome" />
 
-            <label align="left" text="Chance" width="100" horzTextAlign="center" />
+            <label align="left" text="Chance" width="100" horzTextAlign="center" fontStyle="bold" fontColor="black"/>
             <edit align="left" width="35" horzTextAlign="center" field="chance" />
-            <label align="left" text="Resultado" width="80" horzTextAlign="center" />
+            <label align="left" text="Resultado" width="80" horzTextAlign="center" fontStyle="bold" fontColor="black"/>
             <edit align="left" width="100" horzTextAlign="center" field="resultado" />
 
-            <label align="left" text="Chance2" width="100" horzTextAlign="center" />
+            <label align="left" text="Chance2" width="100" horzTextAlign="center" fontStyle="bold" fontColor="black"/>
             <edit align="left" width="35" horzTextAlign="center" field="chance2" />
-            <label align="left" text="Resultado2" width="80" horzTextAlign="center" />
+            <label align="left" text="Resultado2" width="80" horzTextAlign="center" fontStyle="bold" fontColor="black"/>
             <edit align="left" width="100" horzTextAlign="center" field="resultado2" />
 
-            <label align="left" text="Chance3" width="100" horzTextAlign="center" />
+            <label align="left" text="Chance3" width="100" horzTextAlign="center" fontStyle="bold" fontColor="black"/>
             <edit align="left" width="35" horzTextAlign="center" field="chance3" />
-            <label align="left" text="Resultado3" width="80" horzTextAlign="center" />
+            <label align="left" text="Resultado3" width="80" horzTextAlign="center" fontStyle="bold" fontColor="black"/>
             <edit align="left" width="100" horzTextAlign="center" field="resultado3" />
 
-            <label align="left" text="Chance4" width="100" horzTextAlign="center" />
+            <label align="left" text="Chance4" width="100" horzTextAlign="center" fontStyle="bold" fontColor="black"/>
             <edit align="left" width="35" horzTextAlign="center" field="chance4" />
-            <label align="left" text="Resultado4" width="80" horzTextAlign="center" />
+            <label align="left" text="Resultado4" width="80" horzTextAlign="center" fontStyle="bold" fontColor="black"/>
             <edit align="left" width="100" horzTextAlign="center" field="resultado4" />
 
-            <label align="left" text="Chance5" width="100" horzTextAlign="center" />
+            <label align="left" text="Chance5" width="100" horzTextAlign="center" fontStyle="bold" fontColor="black"/>
             <edit align="left" width="35" horzTextAlign="center" field="chance5" />
-            <label align="left" text="Resultado5" width="80" horzTextAlign="center" />
+            <label align="left" text="Resultado5" width="80" horzTextAlign="center" fontStyle="bold" fontColor="black"/>
             <edit align="left" width="100" horzTextAlign="center" field="resultado5" />
 
-            <label align="left" text="Chance6" width="100" horzTextAlign="center" />
+            <label align="left" text="Chance6" width="100" horzTextAlign="center" fontStyle="bold" fontColor="black"/>
             <edit align="left" width="35" horzTextAlign="center" field="chance6" />
-            <label align="left" text="Resultado6" width="80" horzTextAlign="center" />
+            <label align="left" text="Resultado6" width="80" horzTextAlign="center" fontStyle="bold" fontColor="black"/>
             <edit align="left" width="100" horzTextAlign="center" field="resultado6" />
 
             <button align="right" text="Apagar" width="80"
@@ -101,10 +101,20 @@
                                     return chat:enviarMensagem(sheet.nome .. " " .. sheet.resultado)
                                 end
                             else 
-                                if tonumber(v + i-1) == rolagem.resultado then
-                                    chat:enviarMensagem("Passei")
-                                    if rolagem.resultado > tonumber(i-1) and rolagem.resultado <= tonumber(valores[i]) then      
-                                        chat:enviarMensagem("Passei2")                           
+
+                                local total1 = 0
+                                local total2 = 0
+
+                                for t = 1, i-1 do
+                                    total1 = total1 + valores[t]
+                                end
+                                
+                                for t = 1, i do
+                                    total2 = total2 + valores[t]
+                                end
+
+                                if tonumber(v + total1) == rolagem.resultado then
+                                    if rolagem.resultado > total1 and rolagem.resultado <= total2 then      
                                         if i == 2 then 
                                             return chat:enviarMensagem(sheet.nome .. " " .. sheet.resultado2)
                                         elseif i == 3  then

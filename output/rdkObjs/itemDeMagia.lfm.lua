@@ -39,7 +39,7 @@ local function constructNew_frmItemDeMagia()
     obj.rectangle1 = GUI.fromHandle(_obj_newObject("rectangle"));
     obj.rectangle1:setParent(obj.scrollBox1);
     obj.rectangle1:setAlign("top");
-    obj.rectangle1:setColor("blue");
+    obj.rectangle1:setColor("DimGray");
     obj.rectangle1:setHeight(50);
     obj.rectangle1:setName("rectangle1");
 
@@ -55,6 +55,8 @@ local function constructNew_frmItemDeMagia()
     obj.label1:setText("Nome");
     obj.label1:setWidth(100);
     obj.label1:setHorzTextAlign("center");
+    lfm_setPropAsString(obj.label1, "fontStyle",  "bold");
+    obj.label1:setFontColor("black");
     obj.label1:setName("label1");
 
     obj.edit1 = GUI.fromHandle(_obj_newObject("edit"));
@@ -71,6 +73,8 @@ local function constructNew_frmItemDeMagia()
     obj.label2:setText("Chance");
     obj.label2:setWidth(100);
     obj.label2:setHorzTextAlign("center");
+    lfm_setPropAsString(obj.label2, "fontStyle",  "bold");
+    obj.label2:setFontColor("black");
     obj.label2:setName("label2");
 
     obj.edit2 = GUI.fromHandle(_obj_newObject("edit"));
@@ -87,6 +91,8 @@ local function constructNew_frmItemDeMagia()
     obj.label3:setText("Resultado");
     obj.label3:setWidth(80);
     obj.label3:setHorzTextAlign("center");
+    lfm_setPropAsString(obj.label3, "fontStyle",  "bold");
+    obj.label3:setFontColor("black");
     obj.label3:setName("label3");
 
     obj.edit3 = GUI.fromHandle(_obj_newObject("edit"));
@@ -103,6 +109,8 @@ local function constructNew_frmItemDeMagia()
     obj.label4:setText("Chance2");
     obj.label4:setWidth(100);
     obj.label4:setHorzTextAlign("center");
+    lfm_setPropAsString(obj.label4, "fontStyle",  "bold");
+    obj.label4:setFontColor("black");
     obj.label4:setName("label4");
 
     obj.edit4 = GUI.fromHandle(_obj_newObject("edit"));
@@ -119,6 +127,8 @@ local function constructNew_frmItemDeMagia()
     obj.label5:setText("Resultado2");
     obj.label5:setWidth(80);
     obj.label5:setHorzTextAlign("center");
+    lfm_setPropAsString(obj.label5, "fontStyle",  "bold");
+    obj.label5:setFontColor("black");
     obj.label5:setName("label5");
 
     obj.edit5 = GUI.fromHandle(_obj_newObject("edit"));
@@ -135,6 +145,8 @@ local function constructNew_frmItemDeMagia()
     obj.label6:setText("Chance3");
     obj.label6:setWidth(100);
     obj.label6:setHorzTextAlign("center");
+    lfm_setPropAsString(obj.label6, "fontStyle",  "bold");
+    obj.label6:setFontColor("black");
     obj.label6:setName("label6");
 
     obj.edit6 = GUI.fromHandle(_obj_newObject("edit"));
@@ -151,6 +163,8 @@ local function constructNew_frmItemDeMagia()
     obj.label7:setText("Resultado3");
     obj.label7:setWidth(80);
     obj.label7:setHorzTextAlign("center");
+    lfm_setPropAsString(obj.label7, "fontStyle",  "bold");
+    obj.label7:setFontColor("black");
     obj.label7:setName("label7");
 
     obj.edit7 = GUI.fromHandle(_obj_newObject("edit"));
@@ -167,6 +181,8 @@ local function constructNew_frmItemDeMagia()
     obj.label8:setText("Chance4");
     obj.label8:setWidth(100);
     obj.label8:setHorzTextAlign("center");
+    lfm_setPropAsString(obj.label8, "fontStyle",  "bold");
+    obj.label8:setFontColor("black");
     obj.label8:setName("label8");
 
     obj.edit8 = GUI.fromHandle(_obj_newObject("edit"));
@@ -183,6 +199,8 @@ local function constructNew_frmItemDeMagia()
     obj.label9:setText("Resultado4");
     obj.label9:setWidth(80);
     obj.label9:setHorzTextAlign("center");
+    lfm_setPropAsString(obj.label9, "fontStyle",  "bold");
+    obj.label9:setFontColor("black");
     obj.label9:setName("label9");
 
     obj.edit9 = GUI.fromHandle(_obj_newObject("edit"));
@@ -199,6 +217,8 @@ local function constructNew_frmItemDeMagia()
     obj.label10:setText("Chance5");
     obj.label10:setWidth(100);
     obj.label10:setHorzTextAlign("center");
+    lfm_setPropAsString(obj.label10, "fontStyle",  "bold");
+    obj.label10:setFontColor("black");
     obj.label10:setName("label10");
 
     obj.edit10 = GUI.fromHandle(_obj_newObject("edit"));
@@ -215,6 +235,8 @@ local function constructNew_frmItemDeMagia()
     obj.label11:setText("Resultado5");
     obj.label11:setWidth(80);
     obj.label11:setHorzTextAlign("center");
+    lfm_setPropAsString(obj.label11, "fontStyle",  "bold");
+    obj.label11:setFontColor("black");
     obj.label11:setName("label11");
 
     obj.edit11 = GUI.fromHandle(_obj_newObject("edit"));
@@ -231,6 +253,8 @@ local function constructNew_frmItemDeMagia()
     obj.label12:setText("Chance6");
     obj.label12:setWidth(100);
     obj.label12:setHorzTextAlign("center");
+    lfm_setPropAsString(obj.label12, "fontStyle",  "bold");
+    obj.label12:setFontColor("black");
     obj.label12:setName("label12");
 
     obj.edit12 = GUI.fromHandle(_obj_newObject("edit"));
@@ -247,6 +271,8 @@ local function constructNew_frmItemDeMagia()
     obj.label13:setText("Resultado6");
     obj.label13:setWidth(80);
     obj.label13:setHorzTextAlign("center");
+    lfm_setPropAsString(obj.label13, "fontStyle",  "bold");
+    obj.label13:setFontColor("black");
     obj.label13:setName("label13");
 
     obj.edit13 = GUI.fromHandle(_obj_newObject("edit"));
@@ -322,10 +348,20 @@ local function constructNew_frmItemDeMagia()
                                     return chat:enviarMensagem(sheet.nome .. " " .. sheet.resultado)
                                 end
                             else 
-                                if tonumber(v + i-1) == rolagem.resultado then
-                                    chat:enviarMensagem("Passei")
-                                    if rolagem.resultado > tonumber(i-1) and rolagem.resultado <= tonumber(valores[i]) then      
-                                        chat:enviarMensagem("Passei2")                           
+
+                                local total1 = 0
+                                local total2 = 0
+
+                                for t = 1, i-1 do
+                                    total1 = total1 + valores[t]
+                                end
+                                
+                                for t = 1, i do
+                                    total2 = total2 + valores[t]
+                                end
+
+                                if tonumber(v + total1) == rolagem.resultado then
+                                    if rolagem.resultado > total1 and rolagem.resultado <= total2 then      
                                         if i == 2 then 
                                             return chat:enviarMensagem(sheet.nome .. " " .. sheet.resultado2)
                                         elseif i == 3  then

@@ -36,14 +36,35 @@ local function constructNew_IAMONSTER()
     obj.rectangle1 = GUI.fromHandle(_obj_newObject("rectangle"));
     obj.rectangle1:setParent(obj);
     obj.rectangle1:setAlign("top");
-    obj.rectangle1:setColor("yellow");
-    obj.rectangle1:setPadding({left = 5, right = 5, top = 5, bottom = 5});
+    obj.rectangle1:setColor("DimGray");
+    obj.rectangle1:setPadding({top=30});
+    obj.rectangle1:setHeight(90);
     obj.rectangle1:setName("rectangle1");
 
+    obj.label1 = GUI.fromHandle(_obj_newObject("label"));
+    obj.label1:setParent(obj.rectangle1);
+    obj.label1:setAlign("top");
+    obj.label1:setText("Randomizador de Ações!");
+    obj.label1:setHorzTextAlign("center");
+    lfm_setPropAsString(obj.label1, "fontStyle",  "bold");
+    obj.label1:setFontColor("black");
+    obj.label1:setFontSize(50);
+    obj.label1:setName("label1");
+
+    obj.rectangle2 = GUI.fromHandle(_obj_newObject("rectangle"));
+    obj.rectangle2:setParent(obj);
+    obj.rectangle2:setAlign("top");
+    obj.rectangle2:setColor("DimGray");
+    obj.rectangle2:setHeight(70);
+    obj.rectangle2:setPadding({bottom=20});
+    obj.rectangle2:setName("rectangle2");
+
     obj.button1 = GUI.fromHandle(_obj_newObject("button"));
-    obj.button1:setParent(obj.rectangle1);
-    obj.button1:setText("Nova Monstro");
-    obj.button1:setWidth(150);
+    obj.button1:setParent(obj.rectangle2);
+    obj.button1:setText("Nova Ação");
+    obj.button1:setAlign("left");
+    obj.button1:setWidth(100);
+    obj.button1:setMargins({left=50});
     obj.button1:setName("button1");
 
     obj.scrollBox1 = GUI.fromHandle(_obj_newObject("scrollBox"));
@@ -86,9 +107,11 @@ local function constructNew_IAMONSTER()
         end;
 
         if self.scrollBox1 ~= nil then self.scrollBox1:destroy(); self.scrollBox1 = nil; end;
+        if self.rectangle2 ~= nil then self.rectangle2:destroy(); self.rectangle2 = nil; end;
         if self.rectangle1 ~= nil then self.rectangle1:destroy(); self.rectangle1 = nil; end;
         if self.rclMagias ~= nil then self.rclMagias:destroy(); self.rclMagias = nil; end;
         if self.button1 ~= nil then self.button1:destroy(); self.button1 = nil; end;
+        if self.label1 ~= nil then self.label1:destroy(); self.label1 = nil; end;
         self:_oldLFMDestroy();
     end;
 
