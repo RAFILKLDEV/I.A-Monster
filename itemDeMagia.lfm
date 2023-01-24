@@ -1,14 +1,126 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<form name="frmItemDeMagia" height="30" margins="{top=2,bottom=2}">
 
-    <layout align="top">
-        <label align="left" text="Nome" width="100" />
-        <edit align="left" text="Lobo" width="100" />
-        <label align="left" text="Ataque 1" width="100" />
-        <edit align="left" text="kek" width="100" />
-        <label align="left" text="Ataque 2" width="100" />
-        <edit align="left" text="kek" width="100" />
-        <button align="right" text="Apagar" width="80"
-            onClick="NDB.deleteNode(sheet);" />
-    </layout>
+<form name="frmItemDeMagia" margins="{top=5,bottom=2}" height="50">
+
+    <scrollBox align="top" height="50">
+
+        <rectangle align="top" color="blue" height="50">
+            <button align="left" text="Rolar I.A" onClick="rolarIA()" />
+
+            <label align="left" text="Nome" width="100" horzTextAlign="center" />
+            <edit align="left" width="100" horzTextAlign="center" field="nome" />
+
+            <label align="left" text="Chance" width="100" horzTextAlign="center" />
+            <edit align="left" width="35" horzTextAlign="center" field="chance" />
+            <label align="left" text="Resultado" width="80" horzTextAlign="center" />
+            <edit align="left" width="100" horzTextAlign="center" field="resultado" />
+
+            <label align="left" text="Chance2" width="100" horzTextAlign="center" />
+            <edit align="left" width="35" horzTextAlign="center" field="chance2" />
+            <label align="left" text="Resultado2" width="80" horzTextAlign="center" />
+            <edit align="left" width="100" horzTextAlign="center" field="resultado2" />
+
+            <label align="left" text="Chance3" width="100" horzTextAlign="center" />
+            <edit align="left" width="35" horzTextAlign="center" field="chance3" />
+            <label align="left" text="Resultado3" width="80" horzTextAlign="center" />
+            <edit align="left" width="100" horzTextAlign="center" field="resultado3" />
+
+            <label align="left" text="Chance4" width="100" horzTextAlign="center" />
+            <edit align="left" width="35" horzTextAlign="center" field="chance4" />
+            <label align="left" text="Resultado4" width="80" horzTextAlign="center" />
+            <edit align="left" width="100" horzTextAlign="center" field="resultado4" />
+
+            <label align="left" text="Chance5" width="100" horzTextAlign="center" />
+            <edit align="left" width="35" horzTextAlign="center" field="chance5" />
+            <label align="left" text="Resultado5" width="80" horzTextAlign="center" />
+            <edit align="left" width="100" horzTextAlign="center" field="resultado5" />
+
+            <label align="left" text="Chance6" width="100" horzTextAlign="center" />
+            <edit align="left" width="35" horzTextAlign="center" field="chance6" />
+            <label align="left" text="Resultado6" width="80" horzTextAlign="center" />
+            <edit align="left" width="100" horzTextAlign="center" field="resultado6" />
+
+            <button align="right" text="Apagar" width="80"
+                onClick="NDB.deleteNode(sheet);" />
+        </rectangle>
+
+    </scrollBox>
+
+    <script>
+        require("firecast.lua");
+        require("utils.lua");
+
+        <![CDATA[           
+        local function rolarIA()
+                mesa = Firecast.getRoomOf(sheet)
+                chat = mesa.chat
+    
+                chat:enviarMensagem("Definindo Comportamento de " .. sheet.nome .. "...")
+    
+                local valores = {}
+    
+                if sheet.chance ~= nil then
+                table.insert(valores, tonumber(sheet.chance))
+                end
+    
+                if sheet.chance2 ~= nil then
+                table.insert(valores, tonumber(sheet.chance2))
+                end
+    
+                if sheet.chance3 ~= nil then
+                table.insert(valores, tonumber(sheet.chance3))
+                end
+    
+                if sheet.chance4 ~= nil then
+                table.insert(valores, tonumber(sheet.chance4))
+                end
+    
+                if sheet.chance5 ~= nil then
+                table.insert(valores, tonumber(sheet.chance5))
+                end
+    
+                if sheet.chance6 ~= nil then
+                table.insert(valores, tonumber(sheet.chance6))
+                end
+    
+                local resultado = 6
+     
+                for i = 1, #valores do
+    
+    
+                    for v = 1, valores[i] do
+    
+                    
+                        if i == 1 then
+    
+                            if v == resultado then
+    
+                                chat:enviarMensagem(sheet.nome .. " " .. result)
+    
+                            end
+                        
+                        else 
+    
+                            if v + valores[i-1] == resultado then
+    
+                                if resultado > valores[i-1] and resultado <= valores[i] then 
+                                
+                                    if i == 2 then 
+                                        chat:enviarMensagem(sheet.nome .. " " .. result)
+                                    end
+                            
+                                end
+    
+                            end
+    
+                        end
+    
+                    end
+    
+                end
+    
+            end
+            ]]>
+    </script>
+
 </form>
