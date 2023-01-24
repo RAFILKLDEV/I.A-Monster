@@ -33,22 +33,34 @@ local function constructNew_IAMONSTER()
     obj:setWidth(1000);
     obj:setHeight(800);
 
+    obj.rectangle1 = GUI.fromHandle(_obj_newObject("rectangle"));
+    obj.rectangle1:setParent(obj);
+    obj.rectangle1:setAlign("top");
+    obj.rectangle1:setColor("yellow");
+    obj.rectangle1:setPadding({left = 5, right = 5, top = 5, bottom = 5});
+    obj.rectangle1:setName("rectangle1");
+
     obj.button1 = GUI.fromHandle(_obj_newObject("button"));
-    obj.button1:setParent(obj);
-    obj.button1:setLeft(20);
-    obj.button1:setTop(20);
-    obj.button1:setHeight(25);
-    obj.button1:setText("Nova Magia");
-    obj.button1:setWidth(80);
+    obj.button1:setParent(obj.rectangle1);
+    obj.button1:setText("Nova Monstro");
+    obj.button1:setWidth(150);
     obj.button1:setName("button1");
 
+    obj.scrollBox1 = GUI.fromHandle(_obj_newObject("scrollBox"));
+    obj.scrollBox1:setParent(obj);
+    obj.scrollBox1:setAlign("top");
+    obj.scrollBox1:setHeight(800);
+    obj.scrollBox1:setName("scrollBox1");
+
     obj.rclMagias = GUI.fromHandle(_obj_newObject("recordList"));
-    obj.rclMagias:setParent(obj);
+    obj.rclMagias:setParent(obj.scrollBox1);
     obj.rclMagias:setName("rclMagias");
-    obj.rclMagias:setField("magias");
+    obj.rclMagias:setField("Lista");
     obj.rclMagias:setTemplateForm("frmItemDeMagia");
     obj.rclMagias:setAlign("top");
     obj.rclMagias:setAutoHeight(true);
+    obj.rclMagias:setSelectable(true);
+    obj.rclMagias:setSelectedNode();
 
 
 
@@ -73,8 +85,10 @@ local function constructNew_IAMONSTER()
           self:setNodeDatabase(nil);
         end;
 
-        if self.button1 ~= nil then self.button1:destroy(); self.button1 = nil; end;
+        if self.scrollBox1 ~= nil then self.scrollBox1:destroy(); self.scrollBox1 = nil; end;
+        if self.rectangle1 ~= nil then self.rectangle1:destroy(); self.rectangle1 = nil; end;
         if self.rclMagias ~= nil then self.rclMagias:destroy(); self.rclMagias = nil; end;
+        if self.button1 ~= nil then self.button1:destroy(); self.button1 = nil; end;
         self:_oldLFMDestroy();
     end;
 

@@ -3,13 +3,17 @@
 <form formType="sheetTemplate" dataType="DATA_TYPE_AQUI"
      title="I.A Monster" name="IAMONSTER" width="1000" height="800">
 
-     <button left="20" top="20" height="25" text="Nova Magia" width="80"
-          onClick="self.rclMagias:append();" />
-     <recordList name="rclMagias" field="magias" templateForm="frmItemDeMagia"
-          align="top" autoHeight="true" />
+     <rectangle align="top" color="yellow" padding="{left = 5, right = 5, top = 5, bottom = 5}">
+          <button text="Nova Monstro" width="150"
+               onClick="self.rclMagias:append();" />
+     </rectangle>
+
+     <scrollBox align="top" height="800">
+          <recordList name="rclMagias" field="Lista" templateForm="frmItemDeMagia" align="top"
+               autoHeight="true" selectable="true" selectedNode="" />
+     </scrollBox>
 
      <script>
 
      </script>
-
 </form>
