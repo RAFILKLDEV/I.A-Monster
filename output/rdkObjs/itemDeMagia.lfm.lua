@@ -314,22 +314,24 @@ local function constructNew_frmItemDeMagia()
                 function (rolagem)                                   
             
                     for i = 1, #valores do
-        
+
                         for v = 1, valores[i] do
-                        
+
                             if i == 1 then
                                 if v == rolagem.resultado then
                                     return chat:enviarMensagem(sheet.nome .. " " .. sheet.resultado)
                                 end
                             else 
-                                if v + valores[i-1] == rolagem.resultado then
-                                    if rolagem.resultado > valores[i-1] and rolagem.resultado <= valores[i-1] + valores[i] then                                 
+                                if tonumber(v + i-1) == rolagem.resultado then
+                                    chat:enviarMensagem("Passei")
+                                    if rolagem.resultado > tonumber(i-1) and rolagem.resultado <= tonumber(valores[i]) then      
+                                        chat:enviarMensagem("Passei2")                           
                                         if i == 2 then 
                                             return chat:enviarMensagem(sheet.nome .. " " .. sheet.resultado2)
                                         elseif i == 3  then
-                                            return chat:enviarMensagem(sheet.nome .. " " .. sheet.resultado3)
+                                            return chat:enviarMensagem(sheet.nome .. " " .. sheet.resultado3)   
                                         elseif i == 4  then
-                                             return chat:enviarMensagem(sheet.nome .. " " .. sheet.resultado4)
+                                            return chat:enviarMensagem(sheet.nome .. " " .. sheet.resultado4)
                                         elseif i == 5  then
                                             return chat:enviarMensagem(sheet.nome .. " " .. sheet.resultado5)
                                         elseif i == 6  then
