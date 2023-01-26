@@ -103,186 +103,6 @@ local function constructNew_frmItemDeMagia()
     obj.edit3:setField("resultado");
     obj.edit3:setName("edit3");
 
-    obj.label4 = GUI.fromHandle(_obj_newObject("label"));
-    obj.label4:setParent(obj.rectangle1);
-    obj.label4:setAlign("left");
-    obj.label4:setText("Chance2");
-    obj.label4:setWidth(100);
-    obj.label4:setHorzTextAlign("center");
-    lfm_setPropAsString(obj.label4, "fontStyle",  "bold");
-    obj.label4:setFontColor("black");
-    obj.label4:setName("label4");
-
-    obj.edit4 = GUI.fromHandle(_obj_newObject("edit"));
-    obj.edit4:setParent(obj.rectangle1);
-    obj.edit4:setAlign("left");
-    obj.edit4:setWidth(35);
-    obj.edit4:setHorzTextAlign("center");
-    obj.edit4:setField("chance2");
-    obj.edit4:setName("edit4");
-
-    obj.label5 = GUI.fromHandle(_obj_newObject("label"));
-    obj.label5:setParent(obj.rectangle1);
-    obj.label5:setAlign("left");
-    obj.label5:setText("Resultado2");
-    obj.label5:setWidth(80);
-    obj.label5:setHorzTextAlign("center");
-    lfm_setPropAsString(obj.label5, "fontStyle",  "bold");
-    obj.label5:setFontColor("black");
-    obj.label5:setName("label5");
-
-    obj.edit5 = GUI.fromHandle(_obj_newObject("edit"));
-    obj.edit5:setParent(obj.rectangle1);
-    obj.edit5:setAlign("left");
-    obj.edit5:setWidth(100);
-    obj.edit5:setHorzTextAlign("center");
-    obj.edit5:setField("resultado2");
-    obj.edit5:setName("edit5");
-
-    obj.label6 = GUI.fromHandle(_obj_newObject("label"));
-    obj.label6:setParent(obj.rectangle1);
-    obj.label6:setAlign("left");
-    obj.label6:setText("Chance3");
-    obj.label6:setWidth(100);
-    obj.label6:setHorzTextAlign("center");
-    lfm_setPropAsString(obj.label6, "fontStyle",  "bold");
-    obj.label6:setFontColor("black");
-    obj.label6:setName("label6");
-
-    obj.edit6 = GUI.fromHandle(_obj_newObject("edit"));
-    obj.edit6:setParent(obj.rectangle1);
-    obj.edit6:setAlign("left");
-    obj.edit6:setWidth(35);
-    obj.edit6:setHorzTextAlign("center");
-    obj.edit6:setField("chance3");
-    obj.edit6:setName("edit6");
-
-    obj.label7 = GUI.fromHandle(_obj_newObject("label"));
-    obj.label7:setParent(obj.rectangle1);
-    obj.label7:setAlign("left");
-    obj.label7:setText("Resultado3");
-    obj.label7:setWidth(80);
-    obj.label7:setHorzTextAlign("center");
-    lfm_setPropAsString(obj.label7, "fontStyle",  "bold");
-    obj.label7:setFontColor("black");
-    obj.label7:setName("label7");
-
-    obj.edit7 = GUI.fromHandle(_obj_newObject("edit"));
-    obj.edit7:setParent(obj.rectangle1);
-    obj.edit7:setAlign("left");
-    obj.edit7:setWidth(100);
-    obj.edit7:setHorzTextAlign("center");
-    obj.edit7:setField("resultado3");
-    obj.edit7:setName("edit7");
-
-    obj.label8 = GUI.fromHandle(_obj_newObject("label"));
-    obj.label8:setParent(obj.rectangle1);
-    obj.label8:setAlign("left");
-    obj.label8:setText("Chance4");
-    obj.label8:setWidth(100);
-    obj.label8:setHorzTextAlign("center");
-    lfm_setPropAsString(obj.label8, "fontStyle",  "bold");
-    obj.label8:setFontColor("black");
-    obj.label8:setName("label8");
-
-    obj.edit8 = GUI.fromHandle(_obj_newObject("edit"));
-    obj.edit8:setParent(obj.rectangle1);
-    obj.edit8:setAlign("left");
-    obj.edit8:setWidth(35);
-    obj.edit8:setHorzTextAlign("center");
-    obj.edit8:setField("chance4");
-    obj.edit8:setName("edit8");
-
-    obj.label9 = GUI.fromHandle(_obj_newObject("label"));
-    obj.label9:setParent(obj.rectangle1);
-    obj.label9:setAlign("left");
-    obj.label9:setText("Resultado4");
-    obj.label9:setWidth(80);
-    obj.label9:setHorzTextAlign("center");
-    lfm_setPropAsString(obj.label9, "fontStyle",  "bold");
-    obj.label9:setFontColor("black");
-    obj.label9:setName("label9");
-
-    obj.edit9 = GUI.fromHandle(_obj_newObject("edit"));
-    obj.edit9:setParent(obj.rectangle1);
-    obj.edit9:setAlign("left");
-    obj.edit9:setWidth(100);
-    obj.edit9:setHorzTextAlign("center");
-    obj.edit9:setField("resultado4");
-    obj.edit9:setName("edit9");
-
-    obj.label10 = GUI.fromHandle(_obj_newObject("label"));
-    obj.label10:setParent(obj.rectangle1);
-    obj.label10:setAlign("left");
-    obj.label10:setText("Chance5");
-    obj.label10:setWidth(100);
-    obj.label10:setHorzTextAlign("center");
-    lfm_setPropAsString(obj.label10, "fontStyle",  "bold");
-    obj.label10:setFontColor("black");
-    obj.label10:setName("label10");
-
-    obj.edit10 = GUI.fromHandle(_obj_newObject("edit"));
-    obj.edit10:setParent(obj.rectangle1);
-    obj.edit10:setAlign("left");
-    obj.edit10:setWidth(35);
-    obj.edit10:setHorzTextAlign("center");
-    obj.edit10:setField("chance5");
-    obj.edit10:setName("edit10");
-
-    obj.label11 = GUI.fromHandle(_obj_newObject("label"));
-    obj.label11:setParent(obj.rectangle1);
-    obj.label11:setAlign("left");
-    obj.label11:setText("Resultado5");
-    obj.label11:setWidth(80);
-    obj.label11:setHorzTextAlign("center");
-    lfm_setPropAsString(obj.label11, "fontStyle",  "bold");
-    obj.label11:setFontColor("black");
-    obj.label11:setName("label11");
-
-    obj.edit11 = GUI.fromHandle(_obj_newObject("edit"));
-    obj.edit11:setParent(obj.rectangle1);
-    obj.edit11:setAlign("left");
-    obj.edit11:setWidth(100);
-    obj.edit11:setHorzTextAlign("center");
-    obj.edit11:setField("resultado5");
-    obj.edit11:setName("edit11");
-
-    obj.label12 = GUI.fromHandle(_obj_newObject("label"));
-    obj.label12:setParent(obj.rectangle1);
-    obj.label12:setAlign("left");
-    obj.label12:setText("Chance6");
-    obj.label12:setWidth(100);
-    obj.label12:setHorzTextAlign("center");
-    lfm_setPropAsString(obj.label12, "fontStyle",  "bold");
-    obj.label12:setFontColor("black");
-    obj.label12:setName("label12");
-
-    obj.edit12 = GUI.fromHandle(_obj_newObject("edit"));
-    obj.edit12:setParent(obj.rectangle1);
-    obj.edit12:setAlign("left");
-    obj.edit12:setWidth(35);
-    obj.edit12:setHorzTextAlign("center");
-    obj.edit12:setField("chance6");
-    obj.edit12:setName("edit12");
-
-    obj.label13 = GUI.fromHandle(_obj_newObject("label"));
-    obj.label13:setParent(obj.rectangle1);
-    obj.label13:setAlign("left");
-    obj.label13:setText("Resultado6");
-    obj.label13:setWidth(80);
-    obj.label13:setHorzTextAlign("center");
-    lfm_setPropAsString(obj.label13, "fontStyle",  "bold");
-    obj.label13:setFontColor("black");
-    obj.label13:setName("label13");
-
-    obj.edit13 = GUI.fromHandle(_obj_newObject("edit"));
-    obj.edit13:setParent(obj.rectangle1);
-    obj.edit13:setAlign("left");
-    obj.edit13:setWidth(100);
-    obj.edit13:setHorzTextAlign("center");
-    obj.edit13:setField("resultado6");
-    obj.edit13:setName("edit13");
-
     obj.button2 = GUI.fromHandle(_obj_newObject("button"));
     obj.button2:setParent(obj.rectangle1);
     obj.button2:setAlign("right");
@@ -417,36 +237,16 @@ local function constructNew_frmItemDeMagia()
           self:setNodeDatabase(nil);
         end;
 
-        if self.button1 ~= nil then self.button1:destroy(); self.button1 = nil; end;
-        if self.label1 ~= nil then self.label1:destroy(); self.label1 = nil; end;
-        if self.edit4 ~= nil then self.edit4:destroy(); self.edit4 = nil; end;
-        if self.label8 ~= nil then self.label8:destroy(); self.label8 = nil; end;
-        if self.label11 ~= nil then self.label11:destroy(); self.label11 = nil; end;
-        if self.label3 ~= nil then self.label3:destroy(); self.label3 = nil; end;
-        if self.label4 ~= nil then self.label4:destroy(); self.label4 = nil; end;
-        if self.label6 ~= nil then self.label6:destroy(); self.label6 = nil; end;
-        if self.edit11 ~= nil then self.edit11:destroy(); self.edit11 = nil; end;
-        if self.edit9 ~= nil then self.edit9:destroy(); self.edit9 = nil; end;
-        if self.edit5 ~= nil then self.edit5:destroy(); self.edit5 = nil; end;
-        if self.edit6 ~= nil then self.edit6:destroy(); self.edit6 = nil; end;
-        if self.edit13 ~= nil then self.edit13:destroy(); self.edit13 = nil; end;
-        if self.label7 ~= nil then self.label7:destroy(); self.label7 = nil; end;
-        if self.edit7 ~= nil then self.edit7:destroy(); self.edit7 = nil; end;
-        if self.label2 ~= nil then self.label2:destroy(); self.label2 = nil; end;
         if self.edit3 ~= nil then self.edit3:destroy(); self.edit3 = nil; end;
-        if self.edit12 ~= nil then self.edit12:destroy(); self.edit12 = nil; end;
-        if self.label5 ~= nil then self.label5:destroy(); self.label5 = nil; end;
-        if self.label12 ~= nil then self.label12:destroy(); self.label12 = nil; end;
-        if self.edit8 ~= nil then self.edit8:destroy(); self.edit8 = nil; end;
-        if self.button2 ~= nil then self.button2:destroy(); self.button2 = nil; end;
+        if self.button1 ~= nil then self.button1:destroy(); self.button1 = nil; end;
         if self.edit2 ~= nil then self.edit2:destroy(); self.edit2 = nil; end;
-        if self.label9 ~= nil then self.label9:destroy(); self.label9 = nil; end;
-        if self.edit10 ~= nil then self.edit10:destroy(); self.edit10 = nil; end;
-        if self.label10 ~= nil then self.label10:destroy(); self.label10 = nil; end;
+        if self.label1 ~= nil then self.label1:destroy(); self.label1 = nil; end;
         if self.scrollBox1 ~= nil then self.scrollBox1:destroy(); self.scrollBox1 = nil; end;
         if self.rectangle1 ~= nil then self.rectangle1:destroy(); self.rectangle1 = nil; end;
         if self.edit1 ~= nil then self.edit1:destroy(); self.edit1 = nil; end;
-        if self.label13 ~= nil then self.label13:destroy(); self.label13 = nil; end;
+        if self.label3 ~= nil then self.label3:destroy(); self.label3 = nil; end;
+        if self.button2 ~= nil then self.button2:destroy(); self.button2 = nil; end;
+        if self.label2 ~= nil then self.label2:destroy(); self.label2 = nil; end;
         self:_oldLFMDestroy();
     end;
 
