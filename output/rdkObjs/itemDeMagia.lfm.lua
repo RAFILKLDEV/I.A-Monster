@@ -30,6 +30,29 @@ local function constructNew_frmItemDeMagia()
     obj:setMargins({top=5,bottom=2});
     obj:setHeight(50);
 
+    obj.layout1 = GUI.fromHandle(_obj_newObject("layout"));
+    obj.layout1:setParent(obj);
+    obj.layout1:setName("layout1");
+
+    obj.button1 = GUI.fromHandle(_obj_newObject("button"));
+    obj.button1:setParent(obj.layout1);
+    obj.button1:setLeft(20);
+    obj.button1:setTop(20);
+    obj.button1:setHeight(25);
+    obj.button1:setText("Nova Magia");
+    obj.button1:setWidth(80);
+    obj.button1:setName("button1");
+
+    obj.rclMagias = GUI.fromHandle(_obj_newObject("recordList"));
+    obj.rclMagias:setParent(obj.layout1);
+    obj.rclMagias:setName("rclMagias");
+    obj.rclMagias:setField("ite");
+    obj.rclMagias:setTemplateForm("frmItemDeMagia");
+    obj.rclMagias:setLeft(20);
+    obj.rclMagias:setTop(60);
+    obj.rclMagias:setWidth(300);
+    obj.rclMagias:setAutoHeight(true);
+
     obj.scrollBox1 = GUI.fromHandle(_obj_newObject("scrollBox"));
     obj.scrollBox1:setParent(obj);
     obj.scrollBox1:setAlign("top");
@@ -43,11 +66,11 @@ local function constructNew_frmItemDeMagia()
     obj.rectangle1:setHeight(50);
     obj.rectangle1:setName("rectangle1");
 
-    obj.button1 = GUI.fromHandle(_obj_newObject("button"));
-    obj.button1:setParent(obj.rectangle1);
-    obj.button1:setAlign("left");
-    obj.button1:setText("Rolar I.A");
-    obj.button1:setName("button1");
+    obj.button2 = GUI.fromHandle(_obj_newObject("button"));
+    obj.button2:setParent(obj.rectangle1);
+    obj.button2:setAlign("left");
+    obj.button2:setText("Rolar I.A");
+    obj.button2:setName("button2");
 
     obj.label1 = GUI.fromHandle(_obj_newObject("label"));
     obj.label1:setParent(obj.rectangle1);
@@ -103,12 +126,12 @@ local function constructNew_frmItemDeMagia()
     obj.edit3:setField("resultado");
     obj.edit3:setName("edit3");
 
-    obj.button2 = GUI.fromHandle(_obj_newObject("button"));
-    obj.button2:setParent(obj.rectangle1);
-    obj.button2:setAlign("right");
-    obj.button2:setText("Apagar");
-    obj.button2:setWidth(80);
-    obj.button2:setName("button2");
+    obj.button3 = GUI.fromHandle(_obj_newObject("button"));
+    obj.button3:setParent(obj.rectangle1);
+    obj.button3:setAlign("right");
+    obj.button3:setText("Apagar");
+    obj.button3:setWidth(80);
+    obj.button3:setName("button3");
 
 
         require("firecast.lua");
@@ -215,15 +238,21 @@ local function constructNew_frmItemDeMagia()
 
     obj._e_event0 = obj.button1:addEventListener("onClick",
         function (_)
-            rolarIA()
+            self.rclMagias:append();
         end, obj);
 
     obj._e_event1 = obj.button2:addEventListener("onClick",
+        function (_)
+            rolarIA()
+        end, obj);
+
+    obj._e_event2 = obj.button3:addEventListener("onClick",
         function (_)
             NDB.deleteNode(sheet);
         end, obj);
 
     function obj:_releaseEvents()
+        __o_rrpgObjs.removeEventListenerById(self._e_event2);
         __o_rrpgObjs.removeEventListenerById(self._e_event1);
         __o_rrpgObjs.removeEventListenerById(self._e_event0);
     end;
@@ -239,13 +268,16 @@ local function constructNew_frmItemDeMagia()
 
         if self.edit3 ~= nil then self.edit3:destroy(); self.edit3 = nil; end;
         if self.button1 ~= nil then self.button1:destroy(); self.button1 = nil; end;
-        if self.edit2 ~= nil then self.edit2:destroy(); self.edit2 = nil; end;
+        if self.button3 ~= nil then self.button3:destroy(); self.button3 = nil; end;
         if self.label1 ~= nil then self.label1:destroy(); self.label1 = nil; end;
+        if self.label3 ~= nil then self.label3:destroy(); self.label3 = nil; end;
+        if self.button2 ~= nil then self.button2:destroy(); self.button2 = nil; end;
+        if self.edit2 ~= nil then self.edit2:destroy(); self.edit2 = nil; end;
+        if self.layout1 ~= nil then self.layout1:destroy(); self.layout1 = nil; end;
+        if self.rclMagias ~= nil then self.rclMagias:destroy(); self.rclMagias = nil; end;
         if self.scrollBox1 ~= nil then self.scrollBox1:destroy(); self.scrollBox1 = nil; end;
         if self.rectangle1 ~= nil then self.rectangle1:destroy(); self.rectangle1 = nil; end;
         if self.edit1 ~= nil then self.edit1:destroy(); self.edit1 = nil; end;
-        if self.label3 ~= nil then self.label3:destroy(); self.label3 = nil; end;
-        if self.button2 ~= nil then self.button2:destroy(); self.button2 = nil; end;
         if self.label2 ~= nil then self.label2:destroy(); self.label2 = nil; end;
         self:_oldLFMDestroy();
     end;

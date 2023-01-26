@@ -9,7 +9,7 @@
             left="20" top="60" width="300" autoHeight="true"/>
     </layout>
 
-
+    <!-- Adicionar via recordList para criar listas com mais de 6 opcoes -->
     
 
     <scrollBox align="top" height="50">
