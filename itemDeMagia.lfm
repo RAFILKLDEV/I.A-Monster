@@ -1,54 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<form name="frmItemDeMagia" margins="{top=5,bottom=2}" height="1000">
-    <rectangle color="green" align="top" height="50">
-        <button align="left" width="80" text="Novo" onClick="self.rclItens:append();"/>
-        <button align="left" text="Rolar I.A" onClick="rolarIA()" />
+<form name="frmItemDeMagia" margins="{top=5,bottom=5}" align="top" height="300">
+
+    <rectangle color="#2d5d7b" align="top" height="40">
+        <button margins="{left=10,top=5,bottom=5}" align="left" width="80" text="Novo" onClick="self.rclItens:append();"/>
+        <button margins="{left=10,top=5,bottom=5}" align="left" text="Random" onClick="randomizar()" />
+        <button name="Toggle" margins="{left=10,top=5,bottom=5}" align="left" width="80" text="Esconder" onClick="Toggle()"/>
+        <button margins="{left=10,top=5,bottom=5}" align="left" text="Apagar" width="80" onClick="NDB.deleteNode(sheet);" />
     </rectangle>
 
-    <rectangle color="green" align="top" height="800">
-        <recordList align="right" name="rclItens" field="itens" templateForm="frmItemDeMagia" autoHeight="true"/>
-        <button align="right" text="Apagar" width="80" onClick="NDB.deleteNode(sheet);" />
-    </rectangle>
+    <scrollBox name="teste" visible="true" align="top" height="250">
+        <recordList align="top" name="rclItens" field="itens" templateForm="frmItens" autoHeight="true"/>
+    </scrollBox>
+
 
     <!-- Adicionar via recordList para criar listas com mais de 6 opcoes -->
 
     <script>
+    <![CDATA[
         require("firecast.lua");
         require("utils.lua");
+        require("ndb.lua"); 
 
-                                                                                                                                <![CDATA[           
-        local function rolarIA()
+        local function Toggle()
+            self.teste.visible = not self.teste.visible
+            if self.teste.visible then   
+            self.Toggle.text = "Esconder"
+            else
+            self.Toggle.text = "Mostrar"
+            end
+        end
+
+            local function randomizar()
                 mesa = Firecast.getRoomOf(sheet)
                 chat = mesa.chat
-    
-                chat:enviarMensagem("Definindo Comportamento de " .. sheet.nome .. "...")
-    
+        
+                local info = NDB.getChildNodes(sheet.itens)
+                -- showMessage(tableToStr(info))
+        
+                chat:enviarMensagem("Definindo...")
+                
                 local valores = {}
     
-                if sheet.chance ~= nil then
-                table.insert(valores, tonumber(sheet.chance))
+                for i = 1, #info do
+                    table.insert(valores, tonumber(info[i].chance))
                 end
-    
-                if sheet.chance2 ~= nil then
-                table.insert(valores, tonumber(sheet.chance2))
-                end
-    
-                if sheet.chance3 ~= nil then
-                table.insert(valores, tonumber(sheet.chance3))
-                end
-    
-                if sheet.chance4 ~= nil then
-                table.insert(valores, tonumber(sheet.chance4))
-                end
-    
-                if sheet.chance5 ~= nil then
-                table.insert(valores, tonumber(sheet.chance5))
-                end
-    
-                if sheet.chance6 ~= nil then
-                table.insert(valores, tonumber(sheet.chance6))
-                end
+
+                -- showMessage(tableToStr(valores))
     
                 local total = 0
                 
@@ -57,56 +55,43 @@
                 end
                 
                 mesa.chat:rolarDados("1d" .. total, "Escolhendo Ação...",
-                function (rolagem)                                   
-            
+                function (rolagem)    
+                    
                     for i = 1, #valores do
-
                         for v = 1, valores[i] do
-
-                            if i == 1 then
-                                if v == rolagem.resultado then
-                                    return chat:enviarMensagem(sheet.nome .. " " .. sheet.resultado)
+                            if v == rolagem.resultado then
+                                chat:enviarMensagem(info[i].nome)
+                                if info[i].desc ~= nil then
+                                    chat:enviarMensagem(info[i].desc)
                                 end
+                                return
                             else 
-
-                                local total1 = 0
-                                local total2 = 0
+                                local menorNumero = 0
+                                local maiorNumero = 0
 
                                 for t = 1, i-1 do
-                                    total1 = total1 + valores[t]
-                                end
-                                
-                                for t = 1, i do
-                                    total2 = total2 + valores[t]
+                                    menorNumero = menorNumero + valores[t]
                                 end
 
-                                if tonumber(v + total1) == rolagem.resultado then
-                                    if rolagem.resultado > total1 and rolagem.resultado <= total2 then      
-                                        if i == 2 then 
-                                            return chat:enviarMensagem(sheet.nome .. " " .. sheet.resultado2)
-                                        elseif i == 3  then
-                                            return chat:enviarMensagem(sheet.nome .. " " .. sheet.resultado3)   
-                                        elseif i == 4  then
-                                            return chat:enviarMensagem(sheet.nome .. " " .. sheet.resultado4)
-                                        elseif i == 5  then
-                                            return chat:enviarMensagem(sheet.nome .. " " .. sheet.resultado5)
-                                        elseif i == 6  then
-                                            return chat:enviarMensagem(sheet.nome .. " " .. sheet.resultado6)
-                                        end
-                                    end
-        
+                                for t = 1, i do
+                                    maiorNumero = maiorNumero + valores[t]
                                 end
-        
+
+                                if tonumber(v + menorNumero) == rolagem.resultado then
+                                    if rolagem.resultado > menorNumero and rolagem.resultado <= maiorNumero then
+                                        chat:enviarMensagem(info[i].nome)
+                                        if info[i].desc ~= nil then
+                                            chat:enviarMensagem(info[i].desc)
+                                        end
+                                        return
+                                    end
+                                end
                             end
-        
                         end
-        
                     end
                 end)
-     
-    
             end
-            ]]>
+    ]]>
     </script>
 
 </form>

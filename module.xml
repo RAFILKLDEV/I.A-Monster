@@ -7,9 +7,11 @@
     <info lang="pt-BR">
         <!--Informações do plugin na língua "pt-BR". Você pode ter várias tags "info", uma para cada tradução que quiser.-->
         <name>I.A para Monstros</name>
-        <description>I.A para monstros, gerar ações</description>
+        <description>Randomizador. Um plugin que calcula probabilidades de algo. Exemplo: Monstros da Masmorra Fantasma.
+        10 Chances de ser um Esqueleto. 15 Chances de ser um Zombie. 5 de ser um Fantasma. 1 de ser Lich.
+        Sorteia aleatoriamente. Ficando 1d31 1-10 = Esqueleto. 11-15 Zombie etc.. 
+        </description>
         <author>Rafilkl</author>
-        <site>http://www.seu.site.com.br</site>
-        <contact>Facebook? Twitter? E-Mail?</contact>
+        <contact>Rafilkl</contact>
     </info>
 </module>

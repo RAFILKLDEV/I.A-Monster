@@ -7,7 +7,7 @@ require("ndb.lua");
 require("locale.lua");
 local __o_Utils = require("utils.lua");
 
-local function constructNew_IAMONSTER()
+local function constructNew_Randonmizador()
     local obj = GUI.fromHandle(_obj_newObject("form"));
     local self = obj;
     local sheet = nil;
@@ -27,16 +27,16 @@ local function constructNew_IAMONSTER()
     _gui_assignInitialParentForForm(obj.handle);
     obj:beginUpdate();
     obj:setFormType("sheetTemplate");
-    obj:setDataType("GeradorDeAcoes");
-    obj:setTitle("I.A Monster");
-    obj:setName("IAMONSTER");
+    obj:setDataType("Randonmizador");
+    obj:setTitle("Randonmizador");
+    obj:setName("Randonmizador");
     obj:setWidth(1000);
     obj:setHeight(800);
 
     obj.rectangle1 = GUI.fromHandle(_obj_newObject("rectangle"));
     obj.rectangle1:setParent(obj);
     obj.rectangle1:setAlign("top");
-    obj.rectangle1:setColor("DimGray");
+    obj.rectangle1:setColor("#457eac");
     obj.rectangle1:setPadding({top=30});
     obj.rectangle1:setHeight(90);
     obj.rectangle1:setName("rectangle1");
@@ -44,7 +44,7 @@ local function constructNew_IAMONSTER()
     obj.label1 = GUI.fromHandle(_obj_newObject("label"));
     obj.label1:setParent(obj.rectangle1);
     obj.label1:setAlign("top");
-    obj.label1:setText("Randomizador de Ações!");
+    obj.label1:setText("Randonmizador");
     obj.label1:setHorzTextAlign("center");
     lfm_setPropAsString(obj.label1, "fontStyle",  "bold");
     obj.label1:setFontColor("black");
@@ -54,7 +54,7 @@ local function constructNew_IAMONSTER()
     obj.rectangle2 = GUI.fromHandle(_obj_newObject("rectangle"));
     obj.rectangle2:setParent(obj);
     obj.rectangle2:setAlign("top");
-    obj.rectangle2:setColor("DimGray");
+    obj.rectangle2:setColor("#457eac");
     obj.rectangle2:setHeight(70);
     obj.rectangle2:setPadding({bottom=20});
     obj.rectangle2:setName("rectangle2");
@@ -67,8 +67,15 @@ local function constructNew_IAMONSTER()
     obj.button1:setMargins({left=50});
     obj.button1:setName("button1");
 
+    obj.rectangle3 = GUI.fromHandle(_obj_newObject("rectangle"));
+    obj.rectangle3:setParent(obj);
+    obj.rectangle3:setAlign("top");
+    obj.rectangle3:setColor("#457eac");
+    obj.rectangle3:setHeight(800);
+    obj.rectangle3:setName("rectangle3");
+
     obj.scrollBox1 = GUI.fromHandle(_obj_newObject("scrollBox"));
-    obj.scrollBox1:setParent(obj);
+    obj.scrollBox1:setParent(obj.rectangle3);
     obj.scrollBox1:setAlign("top");
     obj.scrollBox1:setHeight(800);
     obj.scrollBox1:setName("scrollBox1");
@@ -106,12 +113,13 @@ local function constructNew_IAMONSTER()
           self:setNodeDatabase(nil);
         end;
 
+        if self.button1 ~= nil then self.button1:destroy(); self.button1 = nil; end;
+        if self.label1 ~= nil then self.label1:destroy(); self.label1 = nil; end;
         if self.scrollBox1 ~= nil then self.scrollBox1:destroy(); self.scrollBox1 = nil; end;
         if self.rectangle2 ~= nil then self.rectangle2:destroy(); self.rectangle2 = nil; end;
         if self.rectangle1 ~= nil then self.rectangle1:destroy(); self.rectangle1 = nil; end;
+        if self.rectangle3 ~= nil then self.rectangle3:destroy(); self.rectangle3 = nil; end;
         if self.rclAcoes ~= nil then self.rclAcoes:destroy(); self.rclAcoes = nil; end;
-        if self.button1 ~= nil then self.button1:destroy(); self.button1 = nil; end;
-        if self.label1 ~= nil then self.label1:destroy(); self.label1 = nil; end;
         self:_oldLFMDestroy();
     end;
 
@@ -120,13 +128,13 @@ local function constructNew_IAMONSTER()
     return obj;
 end;
 
-function newIAMONSTER()
+function newRandonmizador()
     local retObj = nil;
     __o_rrpgObjs.beginObjectsLoading();
 
     __o_Utils.tryFinally(
       function()
-        retObj = constructNew_IAMONSTER();
+        retObj = constructNew_Randonmizador();
       end,
       function()
         __o_rrpgObjs.endObjectsLoading();
@@ -136,18 +144,18 @@ function newIAMONSTER()
     return retObj;
 end;
 
-local _IAMONSTER = {
-    newEditor = newIAMONSTER, 
-    new = newIAMONSTER, 
-    name = "IAMONSTER", 
-    dataType = "GeradorDeAcoes", 
+local _Randonmizador = {
+    newEditor = newRandonmizador, 
+    new = newRandonmizador, 
+    name = "Randonmizador", 
+    dataType = "Randonmizador", 
     formType = "sheetTemplate", 
     formComponentName = "form", 
-    title = "I.A Monster", 
+    title = "Randonmizador", 
     description=""};
 
-IAMONSTER = _IAMONSTER;
-Firecast.registrarForm(_IAMONSTER);
-Firecast.registrarDataType(_IAMONSTER);
+Randonmizador = _Randonmizador;
+Firecast.registrarForm(_Randonmizador);
+Firecast.registrarDataType(_Randonmizador);
 
-return _IAMONSTER;
+return _Randonmizador;

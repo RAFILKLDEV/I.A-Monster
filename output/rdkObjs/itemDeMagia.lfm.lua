@@ -27,18 +27,20 @@ local function constructNew_frmItemDeMagia()
     _gui_assignInitialParentForForm(obj.handle);
     obj:beginUpdate();
     obj:setName("frmItemDeMagia");
-    obj:setMargins({top=5,bottom=2});
-    obj:setHeight(1000);
+    obj:setMargins({top=5,bottom=5});
+    obj:setAlign("top");
+    obj:setHeight(300);
 
     obj.rectangle1 = GUI.fromHandle(_obj_newObject("rectangle"));
     obj.rectangle1:setParent(obj);
-    obj.rectangle1:setColor("green");
+    obj.rectangle1:setColor("#2d5d7b");
     obj.rectangle1:setAlign("top");
-    obj.rectangle1:setHeight(50);
+    obj.rectangle1:setHeight(40);
     obj.rectangle1:setName("rectangle1");
 
     obj.button1 = GUI.fromHandle(_obj_newObject("button"));
     obj.button1:setParent(obj.rectangle1);
+    obj.button1:setMargins({left=10,top=5,bottom=5});
     obj.button1:setAlign("left");
     obj.button1:setWidth(80);
     obj.button1:setText("Novo");
@@ -46,71 +48,76 @@ local function constructNew_frmItemDeMagia()
 
     obj.button2 = GUI.fromHandle(_obj_newObject("button"));
     obj.button2:setParent(obj.rectangle1);
+    obj.button2:setMargins({left=10,top=5,bottom=5});
     obj.button2:setAlign("left");
-    obj.button2:setText("Rolar I.A");
+    obj.button2:setText("Random");
     obj.button2:setName("button2");
 
-    obj.rectangle2 = GUI.fromHandle(_obj_newObject("rectangle"));
-    obj.rectangle2:setParent(obj);
-    obj.rectangle2:setColor("green");
-    obj.rectangle2:setAlign("top");
-    obj.rectangle2:setHeight(800);
-    obj.rectangle2:setName("rectangle2");
-
-    obj.rclItens = GUI.fromHandle(_obj_newObject("recordList"));
-    obj.rclItens:setParent(obj.rectangle2);
-    obj.rclItens:setAlign("right");
-    obj.rclItens:setName("rclItens");
-    obj.rclItens:setField("itens");
-    obj.rclItens:setTemplateForm("frmItemDeMagia");
-    obj.rclItens:setAutoHeight(true);
+    obj.Toggle = GUI.fromHandle(_obj_newObject("button"));
+    obj.Toggle:setParent(obj.rectangle1);
+    obj.Toggle:setName("Toggle");
+    obj.Toggle:setMargins({left=10,top=5,bottom=5});
+    obj.Toggle:setAlign("left");
+    obj.Toggle:setWidth(80);
+    obj.Toggle:setText("Esconder");
 
     obj.button3 = GUI.fromHandle(_obj_newObject("button"));
-    obj.button3:setParent(obj.rectangle2);
-    obj.button3:setAlign("right");
+    obj.button3:setParent(obj.rectangle1);
+    obj.button3:setMargins({left=10,top=5,bottom=5});
+    obj.button3:setAlign("left");
     obj.button3:setText("Apagar");
     obj.button3:setWidth(80);
     obj.button3:setName("button3");
 
+    obj.teste = GUI.fromHandle(_obj_newObject("scrollBox"));
+    obj.teste:setParent(obj);
+    obj.teste:setName("teste");
+    obj.teste:setVisible(true);
+    obj.teste:setAlign("top");
+    obj.teste:setHeight(250);
+
+    obj.rclItens = GUI.fromHandle(_obj_newObject("recordList"));
+    obj.rclItens:setParent(obj.teste);
+    obj.rclItens:setAlign("top");
+    obj.rclItens:setName("rclItens");
+    obj.rclItens:setField("itens");
+    obj.rclItens:setTemplateForm("frmItens");
+    obj.rclItens:setAutoHeight(true);
+
+
+    
+
+
 
         require("firecast.lua");
         require("utils.lua");
+        require("ndb.lua"); 
 
-                                                                                                                        
+        local function Toggle()
+            self.teste.visible = not self.teste.visible
+            if self.teste.visible then   
+            self.Toggle.text = "Esconder"
+            else
+            self.Toggle.text = "Mostrar"
+            end
+        end
 
-
-           
-        local function rolarIA()
+            local function randomizar()
                 mesa = Firecast.getRoomOf(sheet)
                 chat = mesa.chat
-    
-                chat:enviarMensagem("Definindo Comportamento de " .. sheet.nome .. "...")
-    
+        
+                local info = NDB.getChildNodes(sheet.itens)
+                -- showMessage(tableToStr(info))
+        
+                chat:enviarMensagem("Definindo...")
+                
                 local valores = {}
     
-                if sheet.chance ~= nil then
-                table.insert(valores, tonumber(sheet.chance))
+                for i = 1, #info do
+                    table.insert(valores, tonumber(info[i].chance))
                 end
-    
-                if sheet.chance2 ~= nil then
-                table.insert(valores, tonumber(sheet.chance2))
-                end
-    
-                if sheet.chance3 ~= nil then
-                table.insert(valores, tonumber(sheet.chance3))
-                end
-    
-                if sheet.chance4 ~= nil then
-                table.insert(valores, tonumber(sheet.chance4))
-                end
-    
-                if sheet.chance5 ~= nil then
-                table.insert(valores, tonumber(sheet.chance5))
-                end
-    
-                if sheet.chance6 ~= nil then
-                table.insert(valores, tonumber(sheet.chance6))
-                end
+
+                -- showMessage(tableToStr(valores))
     
                 local total = 0
                 
@@ -119,56 +126,43 @@ local function constructNew_frmItemDeMagia()
                 end
                 
                 mesa.chat:rolarDados("1d" .. total, "Escolhendo Ação...",
-                function (rolagem)                                   
-            
+                function (rolagem)    
+                    
                     for i = 1, #valores do
-
                         for v = 1, valores[i] do
-
-                            if i == 1 then
-                                if v == rolagem.resultado then
-                                    return chat:enviarMensagem(sheet.nome .. " " .. sheet.resultado)
+                            if v == rolagem.resultado then
+                                chat:enviarMensagem(info[i].nome)
+                                if info[i].desc ~= nil then
+                                    chat:enviarMensagem(info[i].desc)
                                 end
+                                return
                             else 
-
-                                local total1 = 0
-                                local total2 = 0
+                                local menorNumero = 0
+                                local maiorNumero = 0
 
                                 for t = 1, i-1 do
-                                    total1 = total1 + valores[t]
-                                end
-                                
-                                for t = 1, i do
-                                    total2 = total2 + valores[t]
+                                    menorNumero = menorNumero + valores[t]
                                 end
 
-                                if tonumber(v + total1) == rolagem.resultado then
-                                    if rolagem.resultado > total1 and rolagem.resultado <= total2 then      
-                                        if i == 2 then 
-                                            return chat:enviarMensagem(sheet.nome .. " " .. sheet.resultado2)
-                                        elseif i == 3  then
-                                            return chat:enviarMensagem(sheet.nome .. " " .. sheet.resultado3)   
-                                        elseif i == 4  then
-                                            return chat:enviarMensagem(sheet.nome .. " " .. sheet.resultado4)
-                                        elseif i == 5  then
-                                            return chat:enviarMensagem(sheet.nome .. " " .. sheet.resultado5)
-                                        elseif i == 6  then
-                                            return chat:enviarMensagem(sheet.nome .. " " .. sheet.resultado6)
-                                        end
-                                    end
-        
+                                for t = 1, i do
+                                    maiorNumero = maiorNumero + valores[t]
                                 end
-        
+
+                                if tonumber(v + menorNumero) == rolagem.resultado then
+                                    if rolagem.resultado > menorNumero and rolagem.resultado <= maiorNumero then
+                                        chat:enviarMensagem(info[i].nome)
+                                        if info[i].desc ~= nil then
+                                            chat:enviarMensagem(info[i].desc)
+                                        end
+                                        return
+                                    end
+                                end
                             end
-        
                         end
-        
                     end
                 end)
-     
-    
             end
-            
+    
 
 
 
@@ -182,15 +176,21 @@ local function constructNew_frmItemDeMagia()
 
     obj._e_event1 = obj.button2:addEventListener("onClick",
         function (_)
-            rolarIA()
+            randomizar()
         end, obj);
 
-    obj._e_event2 = obj.button3:addEventListener("onClick",
+    obj._e_event2 = obj.Toggle:addEventListener("onClick",
+        function (_)
+            Toggle()
+        end, obj);
+
+    obj._e_event3 = obj.button3:addEventListener("onClick",
         function (_)
             NDB.deleteNode(sheet);
         end, obj);
 
     function obj:_releaseEvents()
+        __o_rrpgObjs.removeEventListenerById(self._e_event3);
         __o_rrpgObjs.removeEventListenerById(self._e_event2);
         __o_rrpgObjs.removeEventListenerById(self._e_event1);
         __o_rrpgObjs.removeEventListenerById(self._e_event0);
@@ -205,12 +205,13 @@ local function constructNew_frmItemDeMagia()
           self:setNodeDatabase(nil);
         end;
 
-        if self.rectangle1 ~= nil then self.rectangle1:destroy(); self.rectangle1 = nil; end;
-        if self.rectangle2 ~= nil then self.rectangle2:destroy(); self.rectangle2 = nil; end;
-        if self.rclItens ~= nil then self.rclItens:destroy(); self.rclItens = nil; end;
+        if self.teste ~= nil then self.teste:destroy(); self.teste = nil; end;
         if self.button1 ~= nil then self.button1:destroy(); self.button1 = nil; end;
-        if self.button2 ~= nil then self.button2:destroy(); self.button2 = nil; end;
         if self.button3 ~= nil then self.button3:destroy(); self.button3 = nil; end;
+        if self.rectangle1 ~= nil then self.rectangle1:destroy(); self.rectangle1 = nil; end;
+        if self.Toggle ~= nil then self.Toggle:destroy(); self.Toggle = nil; end;
+        if self.rclItens ~= nil then self.rclItens:destroy(); self.rclItens = nil; end;
+        if self.button2 ~= nil then self.button2:destroy(); self.button2 = nil; end;
         self:_oldLFMDestroy();
     end;
 

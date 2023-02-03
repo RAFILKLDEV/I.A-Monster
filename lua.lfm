@@ -2,17 +2,21 @@
 
 <form formType="sheetTemplate" dataType="Randonmizador" title="Randonmizador" name="Randonmizador" width="1000" height="800">
 
-     <rectangle align="top" color="DimGray" padding="{top=30}" height="90">
-          <label align="top" text="Randomizador de Ações!" horzTextAlign="center" fontStyle="bold" fontColor="black" fontSize="50" />
+     <rectangle align="top" color="#457eac" padding="{top=30}" height="90">
+          <label align="top" text="Randonmizador" horzTextAlign="center" fontStyle="bold" fontColor="black" fontSize="50" />
      </rectangle>
 
-     <rectangle align="top" color="DimGray" height="70" padding="{bottom=20}">
+     <rectangle align="top" color="#457eac" height="70" padding="{bottom=20}">
           <button text="Nova Ação" align="left" width="100" margins="{left=50}" onClick="self.rclAcoes:append();" />
      </rectangle>
 
-     <scrollBox align="top" height="800">
-          <recordList name="rclAcoes" field="Lista" templateForm="frmItemDeMagia" align="top" autoHeight="true" selectable="true" selectedNode="" />
-     </scrollBox>
+     <rectangle align="top" color="#457eac" height="800">
+          <scrollBox align="top" height="800">
+               <recordList name="rclAcoes" field="Lista" templateForm="frmItemDeMagia" align="top" autoHeight="true" selectable="true" selectedNode="" />
+          </scrollBox>
+     </rectangle>
+
+
 
      <script>
 
