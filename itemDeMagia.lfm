@@ -1,41 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<form name="frmItemDeMagia" margins="{top=5,bottom=2}" height="50">
+<form name="frmItemDeMagia" margins="{top=5,bottom=2}" height="1000">
+    <rectangle color="green" align="top" height="50">
+        <button align="left" width="80" text="Novo" onClick="self.rclItens:append();"/>
+        <button align="left" text="Rolar I.A" onClick="rolarIA()" />
+    </rectangle>
 
-    <layout>
-        <button left="20" top="20" height="25" text="Nova Magia" width="80" onClick="self.rclMagias:append();"/>
-
-        <recordList name="rclMagias" field="ite" templateForm="frmItemDeMagia"
-            left="20" top="60" width="300" autoHeight="true"/>
-    </layout>
+    <rectangle color="green" align="top" height="800">
+        <recordList align="right" name="rclItens" field="itens" templateForm="frmItemDeMagia" autoHeight="true"/>
+        <button align="right" text="Apagar" width="80" onClick="NDB.deleteNode(sheet);" />
+    </rectangle>
 
     <!-- Adicionar via recordList para criar listas com mais de 6 opcoes -->
-    
-
-    <scrollBox align="top" height="50">
-
-        <rectangle align="top" color="DimGray" height="50">
-            <button align="left" text="Rolar I.A" onClick="rolarIA()" />
-
-            <label align="left" text="Nome" width="100" horzTextAlign="center" fontStyle="bold" fontColor="black" />
-            <edit align="left" width="100" horzTextAlign="center" field="nome" />
-
-            <label align="left" text="Chance" width="100" horzTextAlign="center" fontStyle="bold" fontColor="black"/>
-            <edit align="left" width="35" horzTextAlign="center" field="chance" />
-            <label align="left" text="Resultado" width="80" horzTextAlign="center" fontStyle="bold" fontColor="black"/>
-            <edit align="left" width="100" horzTextAlign="center" field="resultado" />
-
-            <button align="right" text="Apagar" width="80"
-                onClick="NDB.deleteNode(sheet);" />
-        </rectangle>
-
-    </scrollBox>
 
     <script>
         require("firecast.lua");
         require("utils.lua");
 
-        <![CDATA[           
+                                                                                                                                <![CDATA[           
         local function rolarIA()
                 mesa = Firecast.getRoomOf(sheet)
                 chat = mesa.chat

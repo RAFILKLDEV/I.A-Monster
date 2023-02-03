@@ -27,7 +27,7 @@ local function constructNew_IAMONSTER()
     _gui_assignInitialParentForForm(obj.handle);
     obj:beginUpdate();
     obj:setFormType("sheetTemplate");
-    obj:setDataType("DATA_TYPE_AQUI");
+    obj:setDataType("GeradorDeAcoes");
     obj:setTitle("I.A Monster");
     obj:setName("IAMONSTER");
     obj:setWidth(1000);
@@ -73,15 +73,15 @@ local function constructNew_IAMONSTER()
     obj.scrollBox1:setHeight(800);
     obj.scrollBox1:setName("scrollBox1");
 
-    obj.rclMagias = GUI.fromHandle(_obj_newObject("recordList"));
-    obj.rclMagias:setParent(obj.scrollBox1);
-    obj.rclMagias:setName("rclMagias");
-    obj.rclMagias:setField("Lista");
-    obj.rclMagias:setTemplateForm("frmItemDeMagia");
-    obj.rclMagias:setAlign("top");
-    obj.rclMagias:setAutoHeight(true);
-    obj.rclMagias:setSelectable(true);
-    obj.rclMagias:setSelectedNode();
+    obj.rclAcoes = GUI.fromHandle(_obj_newObject("recordList"));
+    obj.rclAcoes:setParent(obj.scrollBox1);
+    obj.rclAcoes:setName("rclAcoes");
+    obj.rclAcoes:setField("Lista");
+    obj.rclAcoes:setTemplateForm("frmItemDeMagia");
+    obj.rclAcoes:setAlign("top");
+    obj.rclAcoes:setAutoHeight(true);
+    obj.rclAcoes:setSelectable(true);
+    obj.rclAcoes:setSelectedNode();
 
 
 
@@ -90,7 +90,7 @@ local function constructNew_IAMONSTER()
 
     obj._e_event0 = obj.button1:addEventListener("onClick",
         function (_)
-            self.rclMagias:append();
+            self.rclAcoes:append();
         end, obj);
 
     function obj:_releaseEvents()
@@ -109,7 +109,7 @@ local function constructNew_IAMONSTER()
         if self.scrollBox1 ~= nil then self.scrollBox1:destroy(); self.scrollBox1 = nil; end;
         if self.rectangle2 ~= nil then self.rectangle2:destroy(); self.rectangle2 = nil; end;
         if self.rectangle1 ~= nil then self.rectangle1:destroy(); self.rectangle1 = nil; end;
-        if self.rclMagias ~= nil then self.rclMagias:destroy(); self.rclMagias = nil; end;
+        if self.rclAcoes ~= nil then self.rclAcoes:destroy(); self.rclAcoes = nil; end;
         if self.button1 ~= nil then self.button1:destroy(); self.button1 = nil; end;
         if self.label1 ~= nil then self.label1:destroy(); self.label1 = nil; end;
         self:_oldLFMDestroy();
@@ -140,7 +140,7 @@ local _IAMONSTER = {
     newEditor = newIAMONSTER, 
     new = newIAMONSTER, 
     name = "IAMONSTER", 
-    dataType = "DATA_TYPE_AQUI", 
+    dataType = "GeradorDeAcoes", 
     formType = "sheetTemplate", 
     formComponentName = "form", 
     title = "I.A Monster", 

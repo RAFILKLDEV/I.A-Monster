@@ -28,43 +28,21 @@ local function constructNew_frmItemDeMagia()
     obj:beginUpdate();
     obj:setName("frmItemDeMagia");
     obj:setMargins({top=5,bottom=2});
-    obj:setHeight(50);
-
-    obj.layout1 = GUI.fromHandle(_obj_newObject("layout"));
-    obj.layout1:setParent(obj);
-    obj.layout1:setName("layout1");
-
-    obj.button1 = GUI.fromHandle(_obj_newObject("button"));
-    obj.button1:setParent(obj.layout1);
-    obj.button1:setLeft(20);
-    obj.button1:setTop(20);
-    obj.button1:setHeight(25);
-    obj.button1:setText("Nova Magia");
-    obj.button1:setWidth(80);
-    obj.button1:setName("button1");
-
-    obj.rclMagias = GUI.fromHandle(_obj_newObject("recordList"));
-    obj.rclMagias:setParent(obj.layout1);
-    obj.rclMagias:setName("rclMagias");
-    obj.rclMagias:setField("ite");
-    obj.rclMagias:setTemplateForm("frmItemDeMagia");
-    obj.rclMagias:setLeft(20);
-    obj.rclMagias:setTop(60);
-    obj.rclMagias:setWidth(300);
-    obj.rclMagias:setAutoHeight(true);
-
-    obj.scrollBox1 = GUI.fromHandle(_obj_newObject("scrollBox"));
-    obj.scrollBox1:setParent(obj);
-    obj.scrollBox1:setAlign("top");
-    obj.scrollBox1:setHeight(50);
-    obj.scrollBox1:setName("scrollBox1");
+    obj:setHeight(1000);
 
     obj.rectangle1 = GUI.fromHandle(_obj_newObject("rectangle"));
-    obj.rectangle1:setParent(obj.scrollBox1);
+    obj.rectangle1:setParent(obj);
+    obj.rectangle1:setColor("green");
     obj.rectangle1:setAlign("top");
-    obj.rectangle1:setColor("DimGray");
     obj.rectangle1:setHeight(50);
     obj.rectangle1:setName("rectangle1");
+
+    obj.button1 = GUI.fromHandle(_obj_newObject("button"));
+    obj.button1:setParent(obj.rectangle1);
+    obj.button1:setAlign("left");
+    obj.button1:setWidth(80);
+    obj.button1:setText("Novo");
+    obj.button1:setName("button1");
 
     obj.button2 = GUI.fromHandle(_obj_newObject("button"));
     obj.button2:setParent(obj.rectangle1);
@@ -72,62 +50,23 @@ local function constructNew_frmItemDeMagia()
     obj.button2:setText("Rolar I.A");
     obj.button2:setName("button2");
 
-    obj.label1 = GUI.fromHandle(_obj_newObject("label"));
-    obj.label1:setParent(obj.rectangle1);
-    obj.label1:setAlign("left");
-    obj.label1:setText("Nome");
-    obj.label1:setWidth(100);
-    obj.label1:setHorzTextAlign("center");
-    lfm_setPropAsString(obj.label1, "fontStyle",  "bold");
-    obj.label1:setFontColor("black");
-    obj.label1:setName("label1");
+    obj.rectangle2 = GUI.fromHandle(_obj_newObject("rectangle"));
+    obj.rectangle2:setParent(obj);
+    obj.rectangle2:setColor("green");
+    obj.rectangle2:setAlign("top");
+    obj.rectangle2:setHeight(800);
+    obj.rectangle2:setName("rectangle2");
 
-    obj.edit1 = GUI.fromHandle(_obj_newObject("edit"));
-    obj.edit1:setParent(obj.rectangle1);
-    obj.edit1:setAlign("left");
-    obj.edit1:setWidth(100);
-    obj.edit1:setHorzTextAlign("center");
-    obj.edit1:setField("nome");
-    obj.edit1:setName("edit1");
-
-    obj.label2 = GUI.fromHandle(_obj_newObject("label"));
-    obj.label2:setParent(obj.rectangle1);
-    obj.label2:setAlign("left");
-    obj.label2:setText("Chance");
-    obj.label2:setWidth(100);
-    obj.label2:setHorzTextAlign("center");
-    lfm_setPropAsString(obj.label2, "fontStyle",  "bold");
-    obj.label2:setFontColor("black");
-    obj.label2:setName("label2");
-
-    obj.edit2 = GUI.fromHandle(_obj_newObject("edit"));
-    obj.edit2:setParent(obj.rectangle1);
-    obj.edit2:setAlign("left");
-    obj.edit2:setWidth(35);
-    obj.edit2:setHorzTextAlign("center");
-    obj.edit2:setField("chance");
-    obj.edit2:setName("edit2");
-
-    obj.label3 = GUI.fromHandle(_obj_newObject("label"));
-    obj.label3:setParent(obj.rectangle1);
-    obj.label3:setAlign("left");
-    obj.label3:setText("Resultado");
-    obj.label3:setWidth(80);
-    obj.label3:setHorzTextAlign("center");
-    lfm_setPropAsString(obj.label3, "fontStyle",  "bold");
-    obj.label3:setFontColor("black");
-    obj.label3:setName("label3");
-
-    obj.edit3 = GUI.fromHandle(_obj_newObject("edit"));
-    obj.edit3:setParent(obj.rectangle1);
-    obj.edit3:setAlign("left");
-    obj.edit3:setWidth(100);
-    obj.edit3:setHorzTextAlign("center");
-    obj.edit3:setField("resultado");
-    obj.edit3:setName("edit3");
+    obj.rclItens = GUI.fromHandle(_obj_newObject("recordList"));
+    obj.rclItens:setParent(obj.rectangle2);
+    obj.rclItens:setAlign("right");
+    obj.rclItens:setName("rclItens");
+    obj.rclItens:setField("itens");
+    obj.rclItens:setTemplateForm("frmItemDeMagia");
+    obj.rclItens:setAutoHeight(true);
 
     obj.button3 = GUI.fromHandle(_obj_newObject("button"));
-    obj.button3:setParent(obj.rectangle1);
+    obj.button3:setParent(obj.rectangle2);
     obj.button3:setAlign("right");
     obj.button3:setText("Apagar");
     obj.button3:setWidth(80);
@@ -137,7 +76,7 @@ local function constructNew_frmItemDeMagia()
         require("firecast.lua");
         require("utils.lua");
 
-        
+                                                                                                                        
 
 
            
@@ -238,7 +177,7 @@ local function constructNew_frmItemDeMagia()
 
     obj._e_event0 = obj.button1:addEventListener("onClick",
         function (_)
-            self.rclMagias:append();
+            self.rclItens:append();
         end, obj);
 
     obj._e_event1 = obj.button2:addEventListener("onClick",
@@ -266,19 +205,12 @@ local function constructNew_frmItemDeMagia()
           self:setNodeDatabase(nil);
         end;
 
-        if self.edit3 ~= nil then self.edit3:destroy(); self.edit3 = nil; end;
-        if self.button1 ~= nil then self.button1:destroy(); self.button1 = nil; end;
-        if self.button3 ~= nil then self.button3:destroy(); self.button3 = nil; end;
-        if self.label1 ~= nil then self.label1:destroy(); self.label1 = nil; end;
-        if self.label3 ~= nil then self.label3:destroy(); self.label3 = nil; end;
-        if self.button2 ~= nil then self.button2:destroy(); self.button2 = nil; end;
-        if self.edit2 ~= nil then self.edit2:destroy(); self.edit2 = nil; end;
-        if self.layout1 ~= nil then self.layout1:destroy(); self.layout1 = nil; end;
-        if self.rclMagias ~= nil then self.rclMagias:destroy(); self.rclMagias = nil; end;
-        if self.scrollBox1 ~= nil then self.scrollBox1:destroy(); self.scrollBox1 = nil; end;
         if self.rectangle1 ~= nil then self.rectangle1:destroy(); self.rectangle1 = nil; end;
-        if self.edit1 ~= nil then self.edit1:destroy(); self.edit1 = nil; end;
-        if self.label2 ~= nil then self.label2:destroy(); self.label2 = nil; end;
+        if self.rectangle2 ~= nil then self.rectangle2:destroy(); self.rectangle2 = nil; end;
+        if self.rclItens ~= nil then self.rclItens:destroy(); self.rclItens = nil; end;
+        if self.button1 ~= nil then self.button1:destroy(); self.button1 = nil; end;
+        if self.button2 ~= nil then self.button2:destroy(); self.button2 = nil; end;
+        if self.button3 ~= nil then self.button3:destroy(); self.button3 = nil; end;
         self:_oldLFMDestroy();
     end;
 
