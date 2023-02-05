@@ -6,7 +6,7 @@
         <button margins="{left=10,top=5}" align="left" width="80" text="Novo" onClick="self.rclItens:append()"/>
         <button margins="{left=10,top=5}" align="left" text="Random" onClick="randomizar()" />
         <button name="Toggle" margins="{left=10,top=5}" align="left" width="80" text="Esconder" onClick="Toggle()"/>
-        <button margins="{left=10,top=5}" align="left" text="Teste" width="80" onClick="teste()" />
+        -- <button margins="{left=10,top=5}" align="left" text="Teste" width="80" onClick="teste()" />
         <button margins="{left=10,top=5}" align="left" text="Apagar" width="80" onClick="NDB.deleteNode(sheet)" />
     </rectangle>
 
