@@ -1,20 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<form name="frmItemDeMagia" margins="{top=5,bottom=5}" align="top" height="300">
+<form name="frmItemDeMagia" margins="{top=5,bottom=5}" height="320">
 
     <rectangle color="#2d5d7b" align="top" height="40">
-        <button margins="{left=10,top=5,bottom=5}" align="left" width="80" text="Novo" onClick="self.rclItens:append();"/>
-        <button margins="{left=10,top=5,bottom=5}" align="left" text="Random" onClick="randomizar()" />
-        <button name="Toggle" margins="{left=10,top=5,bottom=5}" align="left" width="80" text="Esconder" onClick="Toggle()"/>
-        <button margins="{left=10,top=5,bottom=5}" align="left" text="Apagar" width="80" onClick="NDB.deleteNode(sheet);" />
+        <button margins="{left=10,top=5}" align="left" width="80" text="Novo" onClick="self.rclItens:append()"/>
+        <button margins="{left=10,top=5}" align="left" text="Random" onClick="randomizar()" />
+        <button name="Toggle" margins="{left=10,top=5}" align="left" width="80" text="Esconder" onClick="Toggle()"/>
+        <button margins="{left=10,top=5}" align="left" text="Teste" width="80" onClick="teste()" />
+        <button margins="{left=10,top=5}" align="left" text="Apagar" width="80" onClick="NDB.deleteNode(sheet)" />
     </rectangle>
 
-    <scrollBox name="teste" visible="true" align="top" height="250">
+    <rectangle color="#2d5d7b" align="top" height="40">
+        <edit align="left" field="name" margins="{left=10,top=5,bottom=5}" horzTextAlign="center" width="442" fontSize="16" fontStyle="bold" />
+    </rectangle>
+
+    <scrollBox visible="true" align="top" height="250">
         <recordList align="top" name="rclItens" field="itens" templateForm="frmItens" autoHeight="true"/>
     </scrollBox>
 
-
-    <!-- Adicionar via recordList para criar listas com mais de 6 opcoes -->
 
     <script>
     <![CDATA[
@@ -22,13 +25,25 @@
         require("utils.lua");
         require("ndb.lua"); 
 
+        local function teste()
+            local kek = self.frmItemDeMagia.height
+            showMessage(tableToStr(kek))
+            self.rclItens.height = 300
+        end
+
         local function Toggle()
-            self.teste.visible = not self.teste.visible
-            if self.teste.visible then   
-            self.Toggle.text = "Esconder"
+            self.rclItens.visible = not self.rclItens.visible
+
+            if self.rclItens.visible then   
+                self.Toggle.text = "Esconder"
+                self.rclItens.height = 300
+
             else
-            self.Toggle.text = "Mostrar"
+                self.Toggle.text = "Mostrar"
+                self.rclItens.height = 0
+
             end
+
         end
 
             local function randomizar()

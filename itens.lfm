@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<form name="frmItens" margins="{left=5,right=5,top=2,bottom=2}" height="50" align="top">
-    <rectangle color="#9191e9" align="top" height="50">
+<form name="frmItens" margins="{left=5,right=5,top=2,bottom=2}" align="top">
+    <rectangle color="#9191e9" align="top">
         <button align="right" text="X" width="50" onClick="NDB.deleteNode(sheet);" />
         <label align="left" text="Nome" horzTextAlign="center" width="50" />
         <edit align="left" field="nome" horzTextAlign="center" width="200"/>

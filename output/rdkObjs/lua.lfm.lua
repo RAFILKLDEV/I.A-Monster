@@ -87,8 +87,6 @@ local function constructNew_Randonmizador()
     obj.rclAcoes:setTemplateForm("frmItemDeMagia");
     obj.rclAcoes:setAlign("top");
     obj.rclAcoes:setAutoHeight(true);
-    obj.rclAcoes:setSelectable(true);
-    obj.rclAcoes:setSelectedNode();
 
 
 

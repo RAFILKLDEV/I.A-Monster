@@ -28,8 +28,7 @@ local function constructNew_frmItemDeMagia()
     obj:beginUpdate();
     obj:setName("frmItemDeMagia");
     obj:setMargins({top=5,bottom=5});
-    obj:setAlign("top");
-    obj:setHeight(300);
+    obj:setHeight(320);
 
     obj.rectangle1 = GUI.fromHandle(_obj_newObject("rectangle"));
     obj.rectangle1:setParent(obj);
@@ -40,7 +39,7 @@ local function constructNew_frmItemDeMagia()
 
     obj.button1 = GUI.fromHandle(_obj_newObject("button"));
     obj.button1:setParent(obj.rectangle1);
-    obj.button1:setMargins({left=10,top=5,bottom=5});
+    obj.button1:setMargins({left=10,top=5});
     obj.button1:setAlign("left");
     obj.button1:setWidth(80);
     obj.button1:setText("Novo");
@@ -48,7 +47,7 @@ local function constructNew_frmItemDeMagia()
 
     obj.button2 = GUI.fromHandle(_obj_newObject("button"));
     obj.button2:setParent(obj.rectangle1);
-    obj.button2:setMargins({left=10,top=5,bottom=5});
+    obj.button2:setMargins({left=10,top=5});
     obj.button2:setAlign("left");
     obj.button2:setText("Random");
     obj.button2:setName("button2");
@@ -56,28 +55,54 @@ local function constructNew_frmItemDeMagia()
     obj.Toggle = GUI.fromHandle(_obj_newObject("button"));
     obj.Toggle:setParent(obj.rectangle1);
     obj.Toggle:setName("Toggle");
-    obj.Toggle:setMargins({left=10,top=5,bottom=5});
+    obj.Toggle:setMargins({left=10,top=5});
     obj.Toggle:setAlign("left");
     obj.Toggle:setWidth(80);
     obj.Toggle:setText("Esconder");
 
     obj.button3 = GUI.fromHandle(_obj_newObject("button"));
     obj.button3:setParent(obj.rectangle1);
-    obj.button3:setMargins({left=10,top=5,bottom=5});
+    obj.button3:setMargins({left=10,top=5});
     obj.button3:setAlign("left");
-    obj.button3:setText("Apagar");
+    obj.button3:setText("Teste");
     obj.button3:setWidth(80);
     obj.button3:setName("button3");
 
-    obj.teste = GUI.fromHandle(_obj_newObject("scrollBox"));
-    obj.teste:setParent(obj);
-    obj.teste:setName("teste");
-    obj.teste:setVisible(true);
-    obj.teste:setAlign("top");
-    obj.teste:setHeight(250);
+    obj.button4 = GUI.fromHandle(_obj_newObject("button"));
+    obj.button4:setParent(obj.rectangle1);
+    obj.button4:setMargins({left=10,top=5});
+    obj.button4:setAlign("left");
+    obj.button4:setText("Apagar");
+    obj.button4:setWidth(80);
+    obj.button4:setName("button4");
+
+    obj.rectangle2 = GUI.fromHandle(_obj_newObject("rectangle"));
+    obj.rectangle2:setParent(obj);
+    obj.rectangle2:setColor("#2d5d7b");
+    obj.rectangle2:setAlign("top");
+    obj.rectangle2:setHeight(40);
+    obj.rectangle2:setName("rectangle2");
+
+    obj.edit1 = GUI.fromHandle(_obj_newObject("edit"));
+    obj.edit1:setParent(obj.rectangle2);
+    obj.edit1:setAlign("left");
+    obj.edit1:setField("name");
+    obj.edit1:setMargins({left=10,top=5,bottom=5});
+    obj.edit1:setHorzTextAlign("center");
+    obj.edit1:setWidth(442);
+    obj.edit1:setFontSize(16);
+    lfm_setPropAsString(obj.edit1, "fontStyle",  "bold");
+    obj.edit1:setName("edit1");
+
+    obj.scrollBox1 = GUI.fromHandle(_obj_newObject("scrollBox"));
+    obj.scrollBox1:setParent(obj);
+    obj.scrollBox1:setVisible(true);
+    obj.scrollBox1:setAlign("top");
+    obj.scrollBox1:setHeight(250);
+    obj.scrollBox1:setName("scrollBox1");
 
     obj.rclItens = GUI.fromHandle(_obj_newObject("recordList"));
-    obj.rclItens:setParent(obj.teste);
+    obj.rclItens:setParent(obj.scrollBox1);
     obj.rclItens:setAlign("top");
     obj.rclItens:setName("rclItens");
     obj.rclItens:setField("itens");
@@ -93,13 +118,25 @@ local function constructNew_frmItemDeMagia()
         require("utils.lua");
         require("ndb.lua"); 
 
+        local function teste()
+            local kek = self.frmItemDeMagia.height
+            showMessage(tableToStr(kek))
+            self.rclItens.height = 300
+        end
+
         local function Toggle()
-            self.teste.visible = not self.teste.visible
-            if self.teste.visible then   
-            self.Toggle.text = "Esconder"
+            self.rclItens.visible = not self.rclItens.visible
+
+            if self.rclItens.visible then   
+                self.Toggle.text = "Esconder"
+                self.rclItens.height = 300
+
             else
-            self.Toggle.text = "Mostrar"
+                self.Toggle.text = "Mostrar"
+                self.rclItens.height = 0
+
             end
+
         end
 
             local function randomizar()
@@ -171,7 +208,7 @@ local function constructNew_frmItemDeMagia()
 
     obj._e_event0 = obj.button1:addEventListener("onClick",
         function (_)
-            self.rclItens:append();
+            self.rclItens:append()
         end, obj);
 
     obj._e_event1 = obj.button2:addEventListener("onClick",
@@ -186,10 +223,16 @@ local function constructNew_frmItemDeMagia()
 
     obj._e_event3 = obj.button3:addEventListener("onClick",
         function (_)
-            NDB.deleteNode(sheet);
+            teste()
+        end, obj);
+
+    obj._e_event4 = obj.button4:addEventListener("onClick",
+        function (_)
+            NDB.deleteNode(sheet)
         end, obj);
 
     function obj:_releaseEvents()
+        __o_rrpgObjs.removeEventListenerById(self._e_event4);
         __o_rrpgObjs.removeEventListenerById(self._e_event3);
         __o_rrpgObjs.removeEventListenerById(self._e_event2);
         __o_rrpgObjs.removeEventListenerById(self._e_event1);
@@ -205,13 +248,16 @@ local function constructNew_frmItemDeMagia()
           self:setNodeDatabase(nil);
         end;
 
-        if self.teste ~= nil then self.teste:destroy(); self.teste = nil; end;
+        if self.button4 ~= nil then self.button4:destroy(); self.button4 = nil; end;
         if self.button1 ~= nil then self.button1:destroy(); self.button1 = nil; end;
         if self.button3 ~= nil then self.button3:destroy(); self.button3 = nil; end;
+        if self.scrollBox1 ~= nil then self.scrollBox1:destroy(); self.scrollBox1 = nil; end;
         if self.rectangle1 ~= nil then self.rectangle1:destroy(); self.rectangle1 = nil; end;
+        if self.rectangle2 ~= nil then self.rectangle2:destroy(); self.rectangle2 = nil; end;
         if self.Toggle ~= nil then self.Toggle:destroy(); self.Toggle = nil; end;
-        if self.rclItens ~= nil then self.rclItens:destroy(); self.rclItens = nil; end;
+        if self.edit1 ~= nil then self.edit1:destroy(); self.edit1 = nil; end;
         if self.button2 ~= nil then self.button2:destroy(); self.button2 = nil; end;
+        if self.rclItens ~= nil then self.rclItens:destroy(); self.rclItens = nil; end;
         self:_oldLFMDestroy();
     end;
 

@@ -12,7 +12,7 @@
 
      <rectangle align="top" color="#457eac" height="800">
           <scrollBox align="top" height="800">
-               <recordList name="rclAcoes" field="Lista" templateForm="frmItemDeMagia" align="top" autoHeight="true" selectable="true" selectedNode="" />
+               <recordList name="rclAcoes" field="Lista" templateForm="frmItemDeMagia" align="top" autoHeight="true"/>
           </scrollBox>
      </rectangle>
 

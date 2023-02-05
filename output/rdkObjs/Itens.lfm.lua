@@ -28,14 +28,12 @@ local function constructNew_frmItens()
     obj:beginUpdate();
     obj:setName("frmItens");
     obj:setMargins({left=5,right=5,top=2,bottom=2});
-    obj:setHeight(50);
     obj:setAlign("top");
 
     obj.rectangle1 = GUI.fromHandle(_obj_newObject("rectangle"));
     obj.rectangle1:setParent(obj);
     obj.rectangle1:setColor("#9191e9");
     obj.rectangle1:setAlign("top");
-    obj.rectangle1:setHeight(50);
     obj.rectangle1:setName("rectangle1");
 
     obj.button1 = GUI.fromHandle(_obj_newObject("button"));
