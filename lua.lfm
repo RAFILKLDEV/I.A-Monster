@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<form formType="sheetTemplate" dataType="Randonmizador" title="Randonmizador" name="Randonmizador" width="1000" height="800">
+<form formType="sheetTemplate" dataType="Randonmizador" title="Randonmizador" name="Randonmizador" width="1000" height="1000">
 
      <rectangle align="top" color="#457eac" padding="{top=30}" height="90">
           <label align="top" text="Randonmizador" horzTextAlign="center" fontStyle="bold" fontColor="black" fontSize="50" />
