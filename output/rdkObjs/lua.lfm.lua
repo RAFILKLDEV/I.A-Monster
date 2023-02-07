@@ -31,7 +31,7 @@ local function constructNew_Randonmizador()
     obj:setTitle("Randonmizador");
     obj:setName("Randonmizador");
     obj:setWidth(1000);
-    obj:setHeight(800);
+    obj:setHeight(1000);
 
     obj.rectangle1 = GUI.fromHandle(_obj_newObject("rectangle"));
     obj.rectangle1:setParent(obj);

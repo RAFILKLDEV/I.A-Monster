@@ -119,9 +119,8 @@ local function constructNew_frmItemDeMagia()
         require("ndb.lua"); 
 
         local function teste()
-            local kek = self.frmItemDeMagia.height
-            showMessage(tableToStr(kek))
-            self.rclItens.height = 300
+            self.rclItens.height = 0
+            self.rclItens.visible = false
         end
 
         local function Toggle()
