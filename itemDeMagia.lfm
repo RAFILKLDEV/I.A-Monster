@@ -26,8 +26,7 @@
         require("ndb.lua"); 
 
         local function teste()
-            self.rclItens.height = 0
-            self.rclItens.visible = false
+
         end
 
         local function Toggle()
