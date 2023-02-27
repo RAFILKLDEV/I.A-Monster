@@ -30,6 +30,12 @@ local function constructNew_frmItemDeMagia()
     obj:setMargins({top=5,bottom=5});
     obj:setHeight(320);
 
+    obj.label = GUI.fromHandle(_obj_newObject("label"));
+    obj.label:setParent(obj);
+    obj.label:setName("label");
+    obj.label:setAlign("left");
+    obj.label:setText("aloooo");
+
     obj.rectangle1 = GUI.fromHandle(_obj_newObject("rectangle"));
     obj.rectangle1:setParent(obj);
     obj.rectangle1:setColor("#2d5d7b");
@@ -64,8 +70,8 @@ local function constructNew_frmItemDeMagia()
     obj.button3:setParent(obj.rectangle1);
     obj.button3:setMargins({left=10,top=5});
     obj.button3:setAlign("left");
-    obj.button3:setText("Teste");
-    obj.button3:setWidth(80);
+    obj.button3:setText("Porcentagens");
+    obj.button3:setWidth(120);
     obj.button3:setName("button3");
 
     obj.button4 = GUI.fromHandle(_obj_newObject("button"));
@@ -119,8 +125,25 @@ local function constructNew_frmItemDeMagia()
         require("ndb.lua"); 
 
         local function teste()
-            self.rclItens.height = 0
-            self.rclItens.visible = false
+            local info = NDB.getChildNodes(sheet.itens)
+            
+            local total = 0
+
+            for i = 1, #info do
+                total = total + info[i].chance
+            end
+
+            local function getPorcentagem(number)
+                return math.floor(number / total * 100)
+            end
+            
+            local result = {}
+ 
+            for i = 1, #info do
+                table.insert(result, info[i].nome .. " = " .. getPorcentagem(info[i].chance) .. "%")
+            end
+
+            showMessage(tableToStr(result, true))
         end
 
         local function Toggle()
@@ -129,11 +152,9 @@ local function constructNew_frmItemDeMagia()
             if self.rclItens.visible then   
                 self.Toggle.text = "Esconder"
                 self.rclItens.height = 300
-
             else
                 self.Toggle.text = "Mostrar"
                 self.rclItens.height = 0
-
             end
 
         end
@@ -156,7 +177,7 @@ local function constructNew_frmItemDeMagia()
                 -- showMessage(tableToStr(valores))
     
                 local total = 0
-                
+
                 for i = 1, #valores do
                     total = total + valores[i]
                 end
@@ -248,6 +269,7 @@ local function constructNew_frmItemDeMagia()
         end;
 
         if self.button4 ~= nil then self.button4:destroy(); self.button4 = nil; end;
+        if self.label ~= nil then self.label:destroy(); self.label = nil; end;
         if self.button1 ~= nil then self.button1:destroy(); self.button1 = nil; end;
         if self.button3 ~= nil then self.button3:destroy(); self.button3 = nil; end;
         if self.scrollBox1 ~= nil then self.scrollBox1:destroy(); self.scrollBox1 = nil; end;

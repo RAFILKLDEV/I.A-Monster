@@ -2,11 +2,12 @@
 
 <form name="frmItemDeMagia" margins="{top=5,bottom=5}" height="320">
 
+    <label name="label" align="left" text="aloooo"/>
     <rectangle color="#2d5d7b" align="top" height="40">
         <button margins="{left=10,top=5}" align="left" width="80" text="Novo" onClick="self.rclItens:append()"/>
         <button margins="{left=10,top=5}" align="left" text="Random" onClick="randomizar()" />
         <button name="Toggle" margins="{left=10,top=5}" align="left" width="80" text="Esconder" onClick="Toggle()"/>
-        -- <button margins="{left=10,top=5}" align="left" text="Teste" width="80" onClick="teste()" />
+        <button margins="{left=10,top=5}" align="left" text="Porcentagens" width="120" onClick="teste()" />
         <button margins="{left=10,top=5}" align="left" text="Apagar" width="80" onClick="NDB.deleteNode(sheet)" />
     </rectangle>
 
@@ -18,7 +19,6 @@
         <recordList align="top" name="rclItens" field="itens" templateForm="frmItens" autoHeight="true"/>
     </scrollBox>
 
-
     <script>
     <![CDATA[
         require("firecast.lua");
@@ -26,7 +26,25 @@
         require("ndb.lua"); 
 
         local function teste()
+            local info = NDB.getChildNodes(sheet.itens)
+            
+            local total = 0
 
+            for i = 1, #info do
+                total = total + info[i].chance
+            end
+
+            local function getPorcentagem(number)
+                return math.floor(number / total * 100)
+            end
+            
+            local result = {}
+ 
+            for i = 1, #info do
+                table.insert(result, info[i].nome .. " = " .. getPorcentagem(info[i].chance) .. "%")
+            end
+
+            showMessage(tableToStr(result, true))
         end
 
         local function Toggle()
@@ -35,11 +53,9 @@
             if self.rclItens.visible then   
                 self.Toggle.text = "Esconder"
                 self.rclItens.height = 300
-
             else
                 self.Toggle.text = "Mostrar"
                 self.rclItens.height = 0
-
             end
 
         end
@@ -62,7 +78,7 @@
                 -- showMessage(tableToStr(valores))
     
                 local total = 0
-                
+
                 for i = 1, #valores do
                     total = total + valores[i]
                 end

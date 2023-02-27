@@ -91,12 +91,34 @@ local function constructNew_frmItens()
     obj.edit3:setWidth(200);
     obj.edit3:setName("edit3");
 
+
+        local function porcentagem()
+            local arquivo = NDB.load("itemDeMagia.lfm")
+            local file = NDB.getRoot(arquivo)
+            local info = NDB.getParent(sheet)
+            local result = NDB.getAttributes(arquivo)
+
+            local varr NDB.getChildNodes(arquivo)
+
+
+            showMessage(tableToStr(arquivo, true))
+            showMessage(tableToStr(self.arquivo, true))
+            arquivo.label.text = "desgracaaaaaaaaaaaaaaa"
+        end
+    
+
+
     obj._e_event0 = obj.button1:addEventListener("onClick",
         function (_)
             NDB.deleteNode(sheet);
         end, obj);
 
+    obj._e_event1 = obj.edit2:addEventListener("onChange",
+        function (_)
+        end, obj);
+
     function obj:_releaseEvents()
+        __o_rrpgObjs.removeEventListenerById(self._e_event1);
         __o_rrpgObjs.removeEventListenerById(self._e_event0);
     end;
 
