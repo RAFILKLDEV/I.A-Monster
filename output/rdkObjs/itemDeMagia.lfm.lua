@@ -78,9 +78,17 @@ local function constructNew_frmItemDeMagia()
     obj.button4:setParent(obj.rectangle1);
     obj.button4:setMargins({left=10,top=5});
     obj.button4:setAlign("left");
-    obj.button4:setText("Apagar");
-    obj.button4:setWidth(80);
+    obj.button4:setText("Teste 2");
+    obj.button4:setWidth(120);
     obj.button4:setName("button4");
+
+    obj.button5 = GUI.fromHandle(_obj_newObject("button"));
+    obj.button5:setParent(obj.rectangle1);
+    obj.button5:setMargins({left=10,top=5});
+    obj.button5:setAlign("left");
+    obj.button5:setText("Apagar");
+    obj.button5:setWidth(80);
+    obj.button5:setName("button5");
 
     obj.rectangle2 = GUI.fromHandle(_obj_newObject("rectangle"));
     obj.rectangle2:setParent(obj);
@@ -116,13 +124,28 @@ local function constructNew_frmItemDeMagia()
     obj.rclItens:setAutoHeight(true);
 
 
-    
-
-
-
         require("firecast.lua");
         require("utils.lua");
         require("ndb.lua"); 
+
+        function teste2() 
+            local node = NDB.load("scripts.lfm")
+            local nodeChild = NDB.getChildNodes(node)
+            local nodeAtt = NDB.getAttributes(node.testedosteste)
+            local name = NDB.getNodeName(node)
+            showMessage(tableToStr(node, true))
+            showMessage(tableToStr(nodeChild, true))
+            showMessage(tableToStr(nodeAtt, true))
+            showMessage(tableToStr(name, true))
+        end
+
+        function getNomeG(nome)
+            if nome == nil then
+                return "Nome Genérico"
+            else
+                return nome
+            end
+        end
 
         local function teste()
             local info = NDB.getChildNodes(sheet.itens)
@@ -134,13 +157,13 @@ local function constructNew_frmItemDeMagia()
             end
 
             local function getPorcentagem(number)
-                return math.floor(number / total * 100)
+                return math.floor(number or 0 / total * 100)
             end
             
             local result = {}
  
             for i = 1, #info do
-                table.insert(result, info[i].nome .. " = " .. getPorcentagem(info[i].chance) .. "%")
+                table.insert(result, getNomeG(info[i].nome) .. " = " .. getPorcentagem(info[i].chance) .. "%")
             end
 
             showMessage(tableToStr(result, true))
@@ -164,6 +187,7 @@ local function constructNew_frmItemDeMagia()
                 chat = mesa.chat
         
                 local info = NDB.getChildNodes(sheet.itens)
+                
                 -- showMessage(tableToStr(info))
         
                 chat:enviarMensagem("Definindo...")
@@ -171,7 +195,7 @@ local function constructNew_frmItemDeMagia()
                 local valores = {}
     
                 for i = 1, #info do
-                    table.insert(valores, tonumber(info[i].chance))
+                    table.insert(valores, tonumber(info[i].chance) or 0)
                 end
 
                 -- showMessage(tableToStr(valores))
@@ -207,9 +231,9 @@ local function constructNew_frmItemDeMagia()
 
                                 if tonumber(v + menorNumero) == rolagem.resultado then
                                     if rolagem.resultado > menorNumero and rolagem.resultado <= maiorNumero then
-                                        chat:enviarMensagem(info[i].nome)
+                                        chat:enviarMensagem(getNomeG(info[i].nome))
                                         if info[i].desc ~= nil then
-                                            chat:enviarMensagem(info[i].desc)
+                                            chat:enviarMensagem("[§K7]" .. info[i].desc)
                                         end
                                         return
                                     end
@@ -220,7 +244,6 @@ local function constructNew_frmItemDeMagia()
                 end)
             end
     
-
 
 
     
@@ -248,10 +271,16 @@ local function constructNew_frmItemDeMagia()
 
     obj._e_event4 = obj.button4:addEventListener("onClick",
         function (_)
+            teste2()
+        end, obj);
+
+    obj._e_event5 = obj.button5:addEventListener("onClick",
+        function (_)
             NDB.deleteNode(sheet)
         end, obj);
 
     function obj:_releaseEvents()
+        __o_rrpgObjs.removeEventListenerById(self._e_event5);
         __o_rrpgObjs.removeEventListenerById(self._e_event4);
         __o_rrpgObjs.removeEventListenerById(self._e_event3);
         __o_rrpgObjs.removeEventListenerById(self._e_event2);
@@ -268,17 +297,18 @@ local function constructNew_frmItemDeMagia()
           self:setNodeDatabase(nil);
         end;
 
+        if self.rclItens ~= nil then self.rclItens:destroy(); self.rclItens = nil; end;
         if self.button4 ~= nil then self.button4:destroy(); self.button4 = nil; end;
         if self.label ~= nil then self.label:destroy(); self.label = nil; end;
         if self.button1 ~= nil then self.button1:destroy(); self.button1 = nil; end;
         if self.button3 ~= nil then self.button3:destroy(); self.button3 = nil; end;
         if self.scrollBox1 ~= nil then self.scrollBox1:destroy(); self.scrollBox1 = nil; end;
         if self.rectangle1 ~= nil then self.rectangle1:destroy(); self.rectangle1 = nil; end;
-        if self.rectangle2 ~= nil then self.rectangle2:destroy(); self.rectangle2 = nil; end;
+        if self.button5 ~= nil then self.button5:destroy(); self.button5 = nil; end;
         if self.Toggle ~= nil then self.Toggle:destroy(); self.Toggle = nil; end;
-        if self.edit1 ~= nil then self.edit1:destroy(); self.edit1 = nil; end;
+        if self.rectangle2 ~= nil then self.rectangle2:destroy(); self.rectangle2 = nil; end;
         if self.button2 ~= nil then self.button2:destroy(); self.button2 = nil; end;
-        if self.rclItens ~= nil then self.rclItens:destroy(); self.rclItens = nil; end;
+        if self.edit1 ~= nil then self.edit1:destroy(); self.edit1 = nil; end;
         self:_oldLFMDestroy();
     end;
 
