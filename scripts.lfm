@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<form name="testedosteste">
+    <script>
+        require("firecast.lua");
+        require("utils.lua");
+        require("ndb.lua"); 
+
+        local function testeSupremo()
+            return "testeSupremo"
+        end
+        
+        NDB.createChildNode(testeSupremo, testedosteste)
+
+        local kek = "kek"
+
+    </script>
+</form>
