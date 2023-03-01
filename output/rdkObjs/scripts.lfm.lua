@@ -33,8 +33,6 @@ local function constructNew_testedosteste()
         require("utils.lua");
         require("ndb.lua"); 
 
-
-
         local function testeSupremo()
             return "testeSupremo"
         end

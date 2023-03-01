@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form name="frmItemDeMagia" margins="{top=5,bottom=5}" height="320">
-    <label name="label" align="left" text="aloooo"/>
+    <label name="label" align="left" text=""/>
     <rectangle color="#2d5d7b" align="top" height="40">
         <button margins="{left=10,top=5}" align="left" width="80" text="Novo" onClick="self.rclItens:append()"/>
         <button margins="{left=10,top=5}" align="left" text="Random" onClick="randomizar()" />
         <button name="Toggle" margins="{left=10,top=5}" align="left" width="80" text="Esconder" onClick="Toggle()"/>
         <button margins="{left=10,top=5}" align="left" text="Porcentagens" width="120" onClick="teste()" />
-        <button margins="{left=10,top=5}" align="left" text="Teste 2" width="120" onClick="teste2()" />
         <button margins="{left=10,top=5}" align="left" text="Apagar" width="80" onClick="NDB.deleteNode(sheet)" />
     </rectangle>
     <rectangle color="#2d5d7b" align="top" height="40">
@@ -49,7 +48,7 @@
             end
 
             local function getPorcentagem(number)
-                return math.floor(number or 0 / total * 100)
+                return math.floor(((number or 0) / total) * 100)
             end
             
             local result = {}
@@ -104,9 +103,9 @@
                     for i = 1, #valores do
                         for v = 1, valores[i] do
                             if v == rolagem.resultado then
-                                chat:enviarMensagem(info[i].nome)
+                                chat:enviarMensagem(getNomeG(info[i].nome))
                                 if info[i].desc ~= nil then
-                                    chat:enviarMensagem(info[i].desc)
+                                    chat:enviarMensagem("[§K7]" .. info[i].desc)
                                 end
                                 return
                             else 
