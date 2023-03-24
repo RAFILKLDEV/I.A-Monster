@@ -23,7 +23,7 @@
 
             showMessage(tableToStr(arquivo, true))
             showMessage(tableToStr(self.arquivo, true))
-            arquivo.label.text = "desgracaaaaaaaaaaaaaaa"
+            arquivo.label.text = "desgraca"
         end
     </script>
 </form>
